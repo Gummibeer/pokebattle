@@ -5,7 +5,7 @@
 * [Laravel](http://laravel.com)
 * [veekun/pokedex](https://github.com/veekun/pokedex)
 * [pokeapi](http://pokeapi.co)
-* [dragonflycavehttp://www.dragonflycave.com/stats.aspx
+* [dragonflycave]http://www.dragonflycave.com/stats.aspx
 
 ## Calculations
 
