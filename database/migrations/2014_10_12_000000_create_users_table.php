@@ -17,6 +17,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->integer('experience')->unsigned();
+            $table->integer('wins')->unsigned();
+            $table->integer('looses')->unsigned();
+            $table->integer('kills')->unsigned();
+            $table->integer('deaths')->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });
