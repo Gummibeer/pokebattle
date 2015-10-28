@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFailedJobsTable extends Migration
+class CreateQueueJobsFailedTable extends Migration
 {
     public function up()
     {

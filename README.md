@@ -1,4 +1,4 @@
-# PokeBattle
+# PokéBattle
 
 ## Resources
 
@@ -9,6 +9,7 @@
 * [dragonflycave](http://www.dragonflycave.com/stats.aspx)
 * [bulbagarden](http://cdn.bulbagarden.net/upload/4/47/DamageCalc.png)
 * [Stackoverflow](http://stackoverflow.com)
+* [Amaretti](https://wrapbootstrap.com/theme/amaretti-responsive-admin-template-WB0696K5S)
 
 ## Calculations
 

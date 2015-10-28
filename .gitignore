@@ -8,6 +8,8 @@ Homestead.json
 _ide_helper.php
 composer.lock
 .env
+/public/css/style.css
 composer.phar
 
+/resources/views/demo
 *.iml

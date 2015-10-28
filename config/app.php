@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
@@ -148,9 +148,10 @@ return [
         /*
          * Package Service Providers...
          */
-        AbsoluteSoftware\Curl\CurlServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -202,7 +203,9 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Slack'     => Maknz\Slack\Facades\Slack::class,
-        'Curl'      => AbsoluteSoftware\Curl\Facades\CurlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Form'      => Collective\Html\FormFacade::class,
 
     ],
 
