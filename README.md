@@ -8,6 +8,7 @@
 * [pokeapi](http://pokeapi.co)
 * [dragonflycave](http://www.dragonflycave.com/stats.aspx)
 * [bulbagarden](http://cdn.bulbagarden.net/upload/4/47/DamageCalc.png)
+* [Stackoverflow](http://stackoverflow.com)
 
 ## Calculations
 
@@ -18,6 +19,7 @@
 * **Damage** `= floor((2 * curLevel + 10) * (ownATK / enemyDEF) + 2) * (Power / 100)`
 * **needed EXP** `= floor(base * 2 ^ (curLevel - 1))`
 * **received EXP** `= 0 < floor((curLevel / 2) + 5 + (enemyLevel - curLevel)`
+* **Rank** `= floor((curEXP + permEXP) * (0.8 < (kills /deaths) < 1.2))`
 
 ## Rules
 
