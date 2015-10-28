@@ -34,6 +34,8 @@
                 font-size: 96px;
             }
         </style>
+
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
     </head>
     <body>
         <div class="container">
