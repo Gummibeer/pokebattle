@@ -13,8 +13,13 @@ class CreateUserPokemonTable extends Migration
     public function up()
     {
         Schema::create('user_pokemon', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('pokemon_id')->unsigned();
+            $table->foreign('pokemon_id')->references('id')->on('pokemons');
+            $table->integer('experience')->unsigned();
+            $table->timestamp('unlocked_at');
+            $table->unique(['user_id', 'pokemon_id']);
         });
     }
 
@@ -25,6 +30,6 @@ class CreateUserPokemonTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_pokemon');
+        Schema::dropIfExists('user_pokemon');
     }
 }
