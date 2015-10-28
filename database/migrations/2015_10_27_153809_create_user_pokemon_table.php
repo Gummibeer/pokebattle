@@ -19,7 +19,9 @@ class CreateUserPokemonTable extends Migration
             $table->foreign('pokemon_id')->references('id')->on('pokemons');
             $table->integer('experience')->unsigned();
             $table->timestamp('unlocked_at');
+            $table->boolean('active');
             $table->unique(['user_id', 'pokemon_id']);
+            $table->unique(['user_id', 'active']);
         });
     }
 
