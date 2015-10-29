@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePokemonsTable extends Migration
+class CreateMovesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,10 @@ class CreatePokemonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemons', function (Blueprint $table) {
+        Schema::create('moves', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary();
             $table->string('name');
-            $table->integer('health')->unsigned();
-            $table->integer('attack')->unsigned();
-            $table->integer('defense')->unsigned();
-            $table->integer('speed')->unsigned();
-            $table->integer('experience')->unsigned();
+            $table->integer('power')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreatePokemonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemons');
+        Schema::dropIfExists('moves');
     }
 }

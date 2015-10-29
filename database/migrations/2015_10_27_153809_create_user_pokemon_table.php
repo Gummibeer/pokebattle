@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUserPokemonTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('user_pokemon', function (Blueprint $table) {
@@ -18,18 +13,13 @@ class CreateUserPokemonTable extends Migration
             $table->integer('pokemon_id')->unsigned();
             $table->foreign('pokemon_id')->references('id')->on('pokemons');
             $table->integer('experience')->unsigned();
-            $table->timestamp('unlocked_at');
             $table->boolean('active');
+            $table->timestamp('unlocked_at');
             $table->unique(['user_id', 'pokemon_id']);
             $table->unique(['user_id', 'active']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('user_pokemon');
