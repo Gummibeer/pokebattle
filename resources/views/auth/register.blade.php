@@ -5,7 +5,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon fa fa-user"></i></span>
-                {!! Form::text('username', null, [
+                {!! Form::text('name', null, [
                     'placeholder' => trans('Benutzername'),
                     'class' => 'form-control',
                 ]) !!}
