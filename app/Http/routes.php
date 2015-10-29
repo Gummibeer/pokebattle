@@ -20,4 +20,5 @@ Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], 
 // ALIASES
 Route::get('auth', function () { return redirect('auth/login'); });
 Route::get('/', function () { return redirect('app/dashboard'); });
+Route::get('home', function () { return redirect('app/dashboard'); });
 Route::get('app', function () { return redirect('app/dashboard'); });
