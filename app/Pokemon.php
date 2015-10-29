@@ -19,6 +19,10 @@ class Pokemon extends Model
     ];
     protected $hidden = [];
 
+    protected $appends = [
+        'avatar',
+    ];
+
     protected $casts = [
         'id' => 'int',
         'health' => 'int',
@@ -36,6 +40,17 @@ class Pokemon extends Model
     public function moves()
     {
         return $this->belongsToMany(Move::class, 'pokemon_move', 'pokemon_id', 'move_id');
+    }
+
+    public function getAvatarAttribute()
+    {
+        $path = 'pokemons/'.$this->id.'.png';
+        if(!\Storage::disk('public')->exists($path)) {
+            \Storage::disk('public')->put($path, file_get_contents('http://www.pokestadium.com/assets/img/sprites/'.$this->id.'.png'));
+        }
+        if(\Storage::disk('public')->exists($path)) {
+            return url('storage/'.$path);
+        }
     }
 
     public function getNameAttribute($value)
