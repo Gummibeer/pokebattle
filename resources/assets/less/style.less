@@ -5,11 +5,11 @@
 /*------------------------------------------------------------------
 [Bootstrap CSS]
 */
-@import "includes/bootstrap/bootstrap.less";
+@import "bootstrap/bootstrap.less";
 
 //Config and general styles
 @import "includes/config.less";
-@import "includes/bootstrap-variables.less";
+@import "custom/_vars";
 @import "includes/general.less";
 
 //Mixins
@@ -17,8 +17,8 @@
 @import "includes/mixins/triangle.less";
 
 //Fonts
-@import "includes/fonts/raleway.less";
-@import "includes/fonts/open-sans.less";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 
 //Structure
 @import "includes/structure/main-wrapper.less";
@@ -88,3 +88,5 @@
 
 //Helper classes
 @import "includes/helpers.less";
+
+@import "custom/custom";
