@@ -7,6 +7,8 @@ return [
     'email' => 'E-Mail',
     'password' => 'Passwort',
     'confirm' => 'bestätigen',
+
     'signin' => 'anmelden',
     'signup' => 'registrieren',
+    'signout' => 'abmelden',
 ];
