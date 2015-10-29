@@ -32,6 +32,13 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right am-icons-nav">
+                <li>
+                    <a href="https://gitlab.com/powerful-panda-productions/pokebattle" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Gitlab">
+                        <i class="icon fa fa-git"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
