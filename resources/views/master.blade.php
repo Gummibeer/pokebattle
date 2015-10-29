@@ -7,7 +7,7 @@
 
     <title>PokéBattle</title>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/nanoscroller.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/nanoscroller.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
     <!--[if lt IE 9]>
