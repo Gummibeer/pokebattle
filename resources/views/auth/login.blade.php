@@ -1,7 +1,7 @@
 @extends('auth')
 
 @section('content')
-    {!! Form::open(['url' => 'auth/register']) !!}
+    {!! Form::open(['url' => 'auth/login']) !!}
     <div class="form-group">
         <div id="email-handler" class="input-group">
             <span class="input-group-addon"><i class="icon fa fa-envelope"></i></span>
