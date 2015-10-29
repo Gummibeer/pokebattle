@@ -6,7 +6,7 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon fa fa-user"></i></span>
                 {!! Form::text('name', null, [
-                    'placeholder' => trans('Benutzername'),
+                    'placeholder' => trans('messages.username'),
                     'class' => 'form-control',
                 ]) !!}
             </div>
@@ -15,7 +15,7 @@
             <div id="email-handler" class="input-group">
                 <span class="input-group-addon"><i class="icon fa fa-envelope"></i></span>
                 {!! Form::email('email', null, [
-                    'placeholder' => trans('E-Mail'),
+                    'placeholder' => trans('messages.email'),
                     'class' => 'form-control',
                 ]) !!}
             </div>
@@ -24,7 +24,7 @@
             <div id="password-handler" class="input-group">
                 <span class="input-group-addon"><i class="icon fa fa-lock"></i></span>
                 {!! Form::password('password', [
-                    'placeholder' => trans('Passwort'),
+                    'placeholder' => trans('messages.password'),
                     'class' => 'form-control',
                 ]) !!}
             </div>
@@ -33,13 +33,13 @@
             <div id="confirm-handler" class="input-group">
                 <span class="input-group-addon"><i class="icon fa fa-lock"></i></span>
                 {!! Form::password('password_confirmation', [
-                    'placeholder' => trans('Wiederholen'),
+                    'placeholder' => trans('messages.confirm'),
                     'class' => 'form-control',
                 ]) !!}
             </div>
         </div>
         <div class="form-group">
-            {!! Form::submit(trans('registrieren'), [
+            {!! Form::submit(trans('messages.signup'), [
                 'class' => 'btn btn-block btn-primary btn-lg',
             ]) !!}
         </div>

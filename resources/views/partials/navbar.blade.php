@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <div class="page-title">
-                <span>PokeBattle</span>
+                <span>{{ trans('messages.pokebattle') }}</span>
             </div>
             <a href="#" class="am-toggle-left-sidebar navbar-toggle collapsed">
                 <span class="icon-bar"><span></span><span></span><span></span></span>
