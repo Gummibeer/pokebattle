@@ -16,7 +16,7 @@ class LoadPokemons extends Migration
             $response = $client->request('GET', $i);
             if ($response->getStatusCode() == 200) {
                 $body = json_decode((string)$response->getBody(), true);
-                if(count($body['moves']) > 0) {
+                if(count($body['moves']) > 0 && count($body['types']) > 0) {
                     $pokemon = \App\Pokemon::create([
                         'id' => $body['national_id'],
                         'name' => $body['name'],
