@@ -4,13 +4,14 @@
 
 * [Laravel](http://laravel.com)
 * [Larachat](https://larachat.slack.com)
-* [veekun/pokedex](https://github.com/veekun/pokedex)
 * [pokeapi](http://pokeapi.co)
-* [dragonflycave](http://www.dragonflycave.com/stats.aspx)
-* [bulbagarden](http://cdn.bulbagarden.net/upload/4/47/DamageCalc.png)
+* [veekun/pokedex](https://github.com/veekun/pokedex)
 * [Pokestadium](http://www.pokestadium.com)
 * [Stackoverflow](http://stackoverflow.com)
 * [Amaretti](https://wrapbootstrap.com/theme/amaretti-responsive-admin-template-WB0696K5S)
+* [dragonflycave](http://www.dragonflycave.com/stats.aspx) - will come
+* [bulbagarden](http://cdn.bulbagarden.net/upload/4/47/DamageCalc.png) - will come
+* [OpenWeatherMap](http://openweathermap.org) - will come
 
 ## Calculations
 
