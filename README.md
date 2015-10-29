@@ -8,6 +8,7 @@
 * [pokeapi](http://pokeapi.co)
 * [dragonflycave](http://www.dragonflycave.com/stats.aspx)
 * [bulbagarden](http://cdn.bulbagarden.net/upload/4/47/DamageCalc.png)
+* [Pokestadium](http://www.pokestadium.com)
 * [Stackoverflow](http://stackoverflow.com)
 * [Amaretti](https://wrapbootstrap.com/theme/amaretti-responsive-admin-template-WB0696K5S)
 
