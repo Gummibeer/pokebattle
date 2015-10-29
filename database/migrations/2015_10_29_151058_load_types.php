@@ -34,14 +34,14 @@ class LoadTypes extends Migration
                         $cause_type->types()->attach($aim_type->id, ['value' => -1]);
                     }
                 }
-                $output->writeln('added ineffectives '.$cause_type->ineffectives()->lists('id').' to #' . $cause_type->id);
+                $output->writeln('attached ineffectives '.$cause_type->ineffectives()->lists('id').' to #' . $cause_type->id);
                 foreach($body['super_effective'] as $aim_type) {
                     $aim_type = \App\Type::name($aim_type['name'])->first();
                     if(!is_null($aim_type)) {
                         $cause_type->addEffective($aim_type['name']);
                     }
                 }
-                $output->writeln('added effectives '.$cause_type->effectives()->lists('id').' to #' . $cause_type->id);
+                $output->writeln('attached effectives '.$cause_type->effectives()->lists('id').' to #' . $cause_type->id);
             }
         }
     }

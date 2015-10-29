@@ -16,30 +16,32 @@ class LoadPokemons extends Migration
             $response = $client->request('GET', $i);
             if ($response->getStatusCode() == 200) {
                 $body = json_decode((string)$response->getBody(), true);
-                $pokemon = \App\Pokemon::create([
-                    'id' => $body['national_id'],
-                    'name' => $body['name'],
-                    'health' => $body['hp'],
-                    'attack' => $body['attack'],
-                    'defense' => $body['defense'],
-                    'speed' => $body['speed'],
-                    'experience' => $body['exp'],
-                ]);
-                $output->writeln('created #' . $pokemon->id . ' - ' . $pokemon->name);
-                foreach($body['types'] as $type) {
-                    $type = \App\Type::name($type['name'])->first();
-                    if(!is_null($type)) {
-                        $pokemon->types()->attach($type->id);
+                if(count($body['moves']) > 0) {
+                    $pokemon = \App\Pokemon::create([
+                        'id' => $body['national_id'],
+                        'name' => $body['name'],
+                        'health' => $body['hp'],
+                        'attack' => $body['attack'],
+                        'defense' => $body['defense'],
+                        'speed' => $body['speed'],
+                        'experience' => $body['exp'],
+                    ]);
+                    $output->writeln('created #' . $pokemon->id . ' - ' . $pokemon->name);
+                    foreach ($body['types'] as $type) {
+                        $type = \App\Type::name($type['name'])->first();
+                        if (!is_null($type)) {
+                            $pokemon->types()->attach($type->id);
+                        }
                     }
-                }
-                $output->writeln('added types '.$pokemon->types()->lists('id').' to #' . $pokemon->id);
-                foreach($body['moves'] as $move) {
-                    $move = \App\Move::name($move['name'])->first();
-                    if(!is_null($move)) {
-                        $pokemon->moves()->attach($move->id);
+                    $output->writeln('attached types ' . $pokemon->types()->lists('id') . ' to #' . $pokemon->id);
+                    foreach ($body['moves'] as $move) {
+                        $move = \App\Move::name($move['name'])->first();
+                        if (!is_null($move)) {
+                            $pokemon->moves()->attach($move->id);
+                        }
                     }
+                    $output->writeln('attached moves ' . $pokemon->moves()->lists('id') . ' to #' . $pokemon->id);
                 }
-                $output->writeln('added moves '.$pokemon->moves()->lists('id').' to #' . $pokemon->id);
             }
         }
         $output->writeln('created ' . \App\Pokemon::count() . ' pokemons');
