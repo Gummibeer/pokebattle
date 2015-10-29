@@ -22,7 +22,7 @@ class Move extends Model
 
     public function getNameAttribute($value)
     {
-        return trans('types.'.$value);
+        return trans('types.' . $value);
     }
 
     public function scopeName($query, $name)

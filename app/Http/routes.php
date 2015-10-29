@@ -13,12 +13,20 @@
 
 Route::controller('auth', 'Auth\AuthController');
 
-Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], function () {
     Route::get('dashboard', 'DashboardController@getIndex');
 });
 
 // ALIASES
-Route::get('auth', function () { return redirect('auth/login'); });
-Route::get('/', function () { return redirect('app/dashboard'); });
-Route::get('home', function () { return redirect('app/dashboard'); });
-Route::get('app', function () { return redirect('app/dashboard'); });
+Route::get('auth', function () {
+    return redirect('auth/login');
+});
+Route::get('/', function () {
+    return redirect('app/dashboard');
+});
+Route::get('home', function () {
+    return redirect('app/dashboard');
+});
+Route::get('app', function () {
+    return redirect('app/dashboard');
+});

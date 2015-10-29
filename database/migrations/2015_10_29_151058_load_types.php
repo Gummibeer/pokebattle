@@ -24,24 +24,24 @@ class LoadTypes extends Migration
             }
         }
         $output->writeln('created ' . \App\Type::count() . ' types');
-        foreach(\App\Type::all() as $cause_type) {
+        foreach (\App\Type::all() as $cause_type) {
             $response = $client->request('GET', $cause_type->id);
             if ($response->getStatusCode() == 200) {
                 $body = json_decode((string)$response->getBody(), true);
-                foreach($body['ineffective'] as $aim_type) {
+                foreach ($body['ineffective'] as $aim_type) {
                     $aim_type = \App\Type::name($aim_type['name'])->first();
-                    if(!is_null($aim_type)) {
+                    if (!is_null($aim_type)) {
                         $cause_type->types()->attach($aim_type->id, ['value' => -1]);
                     }
                 }
-                $output->writeln('attached ineffectives '.$cause_type->ineffectives()->lists('id').' to #' . $cause_type->id);
-                foreach($body['super_effective'] as $aim_type) {
+                $output->writeln('attached ineffectives ' . $cause_type->ineffectives()->lists('id') . ' to #' . $cause_type->id);
+                foreach ($body['super_effective'] as $aim_type) {
                     $aim_type = \App\Type::name($aim_type['name'])->first();
-                    if(!is_null($aim_type)) {
+                    if (!is_null($aim_type)) {
                         $cause_type->addEffective($aim_type['name']);
                     }
                 }
-                $output->writeln('attached effectives '.$cause_type->effectives()->lists('id').' to #' . $cause_type->id);
+                $output->writeln('attached effectives ' . $cause_type->effectives()->lists('id') . ' to #' . $cause_type->id);
             }
         }
     }

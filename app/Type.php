@@ -35,9 +35,9 @@ class Type extends Model
 
     public function addIneffective($type)
     {
-        if($type instanceof Type) {
+        if ($type instanceof Type) {
             $id = $type->id;
-        } elseif(is_numeric($type)) {
+        } elseif (is_numeric($type)) {
             $id = $type * 1;
         } else {
             $id = object_get(Type::name($type)->first(), 'id', null);
@@ -48,9 +48,9 @@ class Type extends Model
 
     public function addEffective($type)
     {
-        if($type instanceof Type) {
+        if ($type instanceof Type) {
             $id = $type->id;
-        } elseif(is_numeric($type)) {
+        } elseif (is_numeric($type)) {
             $id = $type * 1;
         } else {
             $id = object_get(Type::name($type)->first(), 'id', null);
@@ -61,7 +61,7 @@ class Type extends Model
 
     public function getNameAttribute($value)
     {
-        return trans('types.'.$value);
+        return trans('types.' . $value);
     }
 
     public function scopeName($query, $name)

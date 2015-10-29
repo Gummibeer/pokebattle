@@ -44,18 +44,18 @@ class Pokemon extends Model
 
     public function getAvatarAttribute()
     {
-        $path = 'pokemons/'.$this->id.'.png';
-        if(!\Storage::disk('public')->exists($path)) {
-            \Storage::disk('public')->put($path, file_get_contents('http://www.pokestadium.com/assets/img/sprites/'.$this->id.'.png'));
+        $path = 'pokemons/' . $this->id . '.png';
+        if (!\Storage::disk('public')->exists($path)) {
+            \Storage::disk('public')->put($path, file_get_contents('http://www.pokestadium.com/assets/img/sprites/' . $this->id . '.png'));
         }
-        if(\Storage::disk('public')->exists($path)) {
-            return url('storage/'.$path);
+        if (\Storage::disk('public')->exists($path)) {
+            return url('storage/' . $path);
         }
     }
 
     public function getNameAttribute($value)
     {
-        return trans('types.'.$value);
+        return trans('types.' . $value);
     }
 
     public function scopeName($query, $name)
