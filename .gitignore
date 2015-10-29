@@ -12,4 +12,5 @@ composer.lock
 composer.phar
 
 /resources/views/demo
+/public/css/style.css.map
 *.iml
