@@ -33,6 +33,26 @@ class Type extends Model
         return $this->types()->wherePivot('value', 1);
     }
 
+    public function pokemons()
+    {
+        return $this->belongsToMany(Pokemon::class, 'pokemon_type', 'type_id', 'pokemon_id');
+    }
+
+    public function getEffectivenessAgainst($type)
+    {
+        if ($type instanceof Type) {
+            $effectiveness = 1;
+            $effectiveness += $this->ineffectives()->where('id', $type->id)->count() > 0 ? -0.5 : 0;
+            $effectiveness += $this->effectives()->where('id', $type->id)->count() > 0 ? 1 : 0;
+            return $effectiveness;
+        } elseif (is_numeric($type)) {
+            return $this->getEffectivenessAgainst(Type::find($type));
+        } elseif (is_string($type)) {
+            return $this->getEffectivenessAgainst(Type::name($type)->first());
+        }
+        return 1;
+    }
+
     public function getNameAttribute($value)
     {
         return trans('types.' . $value);

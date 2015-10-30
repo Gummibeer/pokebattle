@@ -42,6 +42,20 @@ class Pokemon extends Model
         return $this->belongsToMany(Move::class, 'pokemon_move', 'pokemon_id', 'move_id');
     }
 
+//    public function isEffectiveAgainst($value)
+//    {
+//        if($value instanceof Type) {
+//
+//        } elseif($value instanceof Pokemon) {
+//
+//        } elseif(is_numeric($value)) {
+//            return $this->isEffectiveAgainst(Type::find($value));
+//        } elseif(is_string($value)) {
+//            return $this->isEffectiveAgainst(Type::name($value)->first());
+//        }
+//        return false;
+//    }
+
     public function getAvatarAttribute()
     {
         $path = 'pokemons/' . $this->id . '.png';
