@@ -33,32 +33,6 @@ class Type extends Model
         return $this->types()->wherePivot('value', 1);
     }
 
-    public function addIneffective($type)
-    {
-        if ($type instanceof Type) {
-            $id = $type->id;
-        } elseif (is_numeric($type)) {
-            $id = $type * 1;
-        } else {
-            $id = object_get(Type::name($type)->first(), 'id', null);
-        }
-
-        $this->types()->attach($id, ['value' => -1]);
-    }
-
-    public function addEffective($type)
-    {
-        if ($type instanceof Type) {
-            $id = $type->id;
-        } elseif (is_numeric($type)) {
-            $id = $type * 1;
-        } else {
-            $id = object_get(Type::name($type)->first(), 'id', null);
-        }
-
-        $this->types()->attach($id, ['value' => 1]);
-    }
-
     public function getNameAttribute($value)
     {
         return trans('types.' . $value);

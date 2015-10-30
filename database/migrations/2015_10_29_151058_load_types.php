@@ -12,6 +12,7 @@ class LoadTypes extends Migration
         $output = new \Symfony\Component\Console\Output\ConsoleOutput();
         $client = new GuzzleHttp\Client(['base_uri' => 'http://pokeapi.co/api/v1/type/']);
 
+        $typeEffectRelations = [];
         for ($i = 1; $i <= $this->amount; $i++) {
             $response = $client->request('GET', $i);
             if ($response->getStatusCode() == 200) {
@@ -20,29 +21,25 @@ class LoadTypes extends Migration
                     'id' => $body['id'],
                     'name' => strtolower($body['name']),
                 ]);
+                $typeEffectRelations[$type->id] = [
+                    'ineffective' => array_column($body['ineffective'], 'name'),
+                    'effective' => array_column($body['super_effective'], 'name'),
+                ];
                 $output->writeln('created #' . $type->id . ' - ' . $type->name);
             }
         }
         $output->writeln('created ' . \App\Type::count() . ' types');
-        foreach (\App\Type::all() as $cause_type) {
-            $response = $client->request('GET', $cause_type->id);
-            if ($response->getStatusCode() == 200) {
-                $body = json_decode((string)$response->getBody(), true);
-                foreach ($body['ineffective'] as $aim_type) {
-                    $aim_type = \App\Type::name($aim_type['name'])->first();
-                    if (!is_null($aim_type)) {
-                        $cause_type->types()->attach($aim_type->id, ['value' => -1]);
-                    }
-                }
-                $output->writeln('attached ineffectives ' . $cause_type->ineffectives()->lists('id') . ' to #' . $cause_type->id);
-                foreach ($body['super_effective'] as $aim_type) {
-                    $aim_type = \App\Type::name($aim_type['name'])->first();
-                    if (!is_null($aim_type)) {
-                        $cause_type->addEffective($aim_type['name']);
-                    }
-                }
-                $output->writeln('attached effectives ' . $cause_type->effectives()->lists('id') . ' to #' . $cause_type->id);
-            }
+
+        foreach ($typeEffectRelations as $type) {
+            $typeNames = $type['ineffective'];
+            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
+            $type->types()->sync($typeIds, ['value' => -1]);
+            $output->writeln('attached ineffectives ' . $type->ineffectives()->lists('id') . ' to #' . $type->id);
+
+            $typeNames = $type['effective'];
+            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
+            $type->types()->sync($typeIds, ['value' => 1]);
+            $output->writeln('attached effectives ' . $type->effectives()->lists('id') . ' to #' . $type->id);
         }
     }
 

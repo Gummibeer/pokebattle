@@ -27,19 +27,15 @@ class LoadPokemons extends Migration
                         'experience' => $body['exp'],
                     ]);
                     $output->writeln('created #' . $pokemon->id . ' - ' . $pokemon->name);
-                    foreach ($body['types'] as $type) {
-                        $type = \App\Type::name($type['name'])->first();
-                        if (!is_null($type)) {
-                            $pokemon->types()->attach($type->id);
-                        }
-                    }
+
+                    $typeNames = array_column($body['types'], 'name');
+                    $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
+                    $pokemon->types()->sync($typeIds);
                     $output->writeln('attached types ' . $pokemon->types()->lists('id') . ' to #' . $pokemon->id);
-                    foreach ($body['moves'] as $move) {
-                        $move = \App\Move::name($move['name'])->first();
-                        if (!is_null($move)) {
-                            $pokemon->moves()->attach($move->id);
-                        }
-                    }
+
+                    $moveNames = array_column($body['moves'], 'name');
+                    $moveIds = \App\Move::whereIn('name', $moveNames)->lists('id');
+                    $pokemon->moves()->sync($moveIds);
                     $output->writeln('attached moves ' . $pokemon->moves()->lists('id') . ' to #' . $pokemon->id);
                 }
             }
