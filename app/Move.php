@@ -20,9 +20,14 @@ class Move extends Model
         'power' => 'int',
     ];
 
+    public function pokemons()
+    {
+        return $this->belongsToMany(Pokemon::class, 'pokemon_move', 'move_id', 'pokemon_id');
+    }
+
     public function getNameAttribute($value)
     {
-        return trans('types.' . $value);
+        return trans('moves.' . $value);
     }
 
     public function scopeName($query, $name)

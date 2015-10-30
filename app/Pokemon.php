@@ -69,7 +69,7 @@ class Pokemon extends Model
 
     public function getNameAttribute($value)
     {
-        return trans('types.' . $value);
+        return trans('pokemons.' . $value);
     }
 
     public function scopeName($query, $name)

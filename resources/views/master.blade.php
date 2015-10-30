@@ -29,10 +29,13 @@
 <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.nanoscroller.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/lib/chartjs/Chart.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/modules/dashboard.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(window).on('load', function() {
         App.init();
+        App.dashboard();
     });
 </script>
 </body>

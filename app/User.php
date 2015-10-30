@@ -45,7 +45,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->pokemons()->wherePivot('active', 1);
     }
 
-
     public function avatar($size = 64)
     {
         return 'https://gravatar.com/avatar/' . md5($this->email) . '?d=mm&s=' . $size;

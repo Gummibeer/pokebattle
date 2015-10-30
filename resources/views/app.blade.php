@@ -4,3 +4,7 @@
     @include('partials.navbar')
     @include('partials.sidebar')
 @endsection
+
+@section('layout')
+    @yield('content')
+@endsection
