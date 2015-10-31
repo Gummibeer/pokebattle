@@ -23,7 +23,7 @@
                         <img class="media-object" src="{{ $pokemonOfTheDay->avatar }}" alt="{{ $pokemonOfTheDay->name }}">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{ $pokemonOfTheDay->name }}</h4>
+                        <h4 class="media-heading">#{{ $pokemonOfTheDay->id }} {{ $pokemonOfTheDay->name }}</h4>
                         <div>
                             <strong>{{ trans('messages.types') }}</strong>
                             {{ implode(', ', $pokemonOfTheDay->types->pluck('name')->toArray()) }}
@@ -54,7 +54,7 @@
                         <i class="wi-fw wi-{{ $weather['today']['type'] }} icon-3x inline-block padding-vertical-10 text-muted" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.weather.'.$weather['today']['type']) }}"></i>
                         <ul class="list-inline">
                             <li><i class="icon wh-temperature-thermometer"></i> {{ $weather['today']['temp'] }} °C</li>
-                            <li><i class="icon wh-wind"></i> {{ $weather['today']['wind'] }} km/h</li>
+                            <li><i class="icon wh-windleft"></i> {{ $weather['today']['wind'] }} km/h</li>
                             <li><i class="icon wh-moon-{{ $moonPhase['today'] }}"></i> {{ trans('messages.moon.'.$moonPhase['today']) }}</li>
                         </ul>
                     </div>
@@ -63,7 +63,7 @@
                         <i class="wi-fw wi-{{ $weather['tomorrow']['type'] }} icon-3x inline-block padding-vertical-10 text-muted" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.weather.'.$weather['tomorrow']['type']) }}"></i>
                         <ul class="list-inline">
                             <li><i class="icon wh-temperature-thermometer"></i> {{ $weather['tomorrow']['temp'] }} °C</li>
-                            <li><i class="icon wh-wind"></i> {{ $weather['tomorrow']['wind'] }} km/h</li>
+                            <li><i class="icon wh-windleft"></i> {{ $weather['tomorrow']['wind'] }} km/h</li>
                             <li><i class="icon wh-moon-{{ $moonPhase['tomorrow'] }}"></i> {{ trans('messages.moon.'.$moonPhase['tomorrow']) }}</li>
                         </ul>
                     </div>

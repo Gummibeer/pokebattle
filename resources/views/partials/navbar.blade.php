@@ -17,16 +17,16 @@
         <div id="am-navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav hidden-xs">
                 <li>
-                    <span data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.weather.'.$weather['today']['type']) }}"><i class="wi-fw wi-{{ $weather['today']['type'] }}"></i></span>
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.weather.'.$weather['today']['type']) }}"><i class="wi-fw wi-{{ $weather['today']['type'] }} icon-2x"></i></span>
                 </li>
                 <li>
-                    <span data-toggle="tooltip" data-placement="bottom" title="{{ $weather['today']['temp'] }}&nbsp;°C"><i class="icon wh-temperature-thermometer"></i></span>
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{ $weather['today']['temp'] }}&nbsp;°C"><i class="icon wh-temperature-thermometer icon-2x"></i></span>
                 </li>
                 <li>
-                    <span data-toggle="tooltip" data-placement="bottom" title="{{ $weather['today']['wind'] }}&nbsp;km/h"><i class="icon wh-wind"></i></span>
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{ $weather['today']['wind'] }}&nbsp;km/h"><i class="icon wh-windleft icon-2x"></i></span>
                 </li>
                 <li>
-                    <span data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.moon.'.$moonPhase['today']) }}"><i class="icon wh-moon-{{ $moonPhase['today'] }}"></i></span>
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.moon.'.$moonPhase['today']) }}"><i class="icon wh-moon-{{ $moonPhase['today'] }} icon-2x"></i></span>
                 </li>
             </ul>
 
