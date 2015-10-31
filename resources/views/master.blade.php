@@ -8,7 +8,8 @@
     <title>{{ trans('messages.pokebattle') }}</title>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/nanoscroller.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/whhg.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/weather-icons.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
     <!--[if lt IE 9]>
         <script src="{{ asset('js/html5shiv.min.js') }}"></script>
@@ -31,11 +32,13 @@
 <script src="{{ asset('js/jquery.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/lib/chartjs/Chart.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/modules/dashboard.js') }}" type="text/javascript"></script>
+@yield('scripts')
 <script type="text/javascript">
     jQuery(window).on('load', function() {
         App.init();
-        App.dashboard();
+        if (typeof App.dashboard === "function") {
+            App.dashboard();
+        }
     });
 </script>
 </body>

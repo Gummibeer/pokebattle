@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'Bulbasaur' => 'Bisasam',
+    'Bulbasaur'     => 'Bisasam',
+    'Uxie'          => 'Selfe',
 ];

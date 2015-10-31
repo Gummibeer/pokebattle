@@ -659,6 +659,7 @@ abbr[data-original-title] {
 .initialism {
   font-size: 90%;
   text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 blockquote {
   padding: 11px 22px;
@@ -6490,6 +6491,10 @@ button:focus {
   margin-right: 20px;
   border-bottom: 1px solid #474646;
 }
+.am-top-header .navbar-header .navbar-brand [class^="icon"],
+.am-top-header .navbar-header .navbar-brand [class*=" icon"] {
+  line-height: 80px;
+}
 @media (max-width: 767px) {
   .am-top-header .navbar-header .navbar-brand {
     display: none;
@@ -6574,16 +6579,20 @@ button:focus {
 .am-top-header .navbar-collapse {
   padding-right: 20px;
 }
-.am-top-header .navbar-collapse .navbar-nav > li > a {
+.am-top-header .navbar-collapse .navbar-nav > li > a,
+.am-top-header .navbar-collapse .navbar-nav > li > span {
   line-height: 80px;
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
   padding: 0 18px;
   outline: none;
+  height: 80px;
+  display: block;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .am-top-header .navbar-collapse .navbar-nav > li > a {
+  .am-top-header .navbar-collapse .navbar-nav > li > a,
+  .am-top-header .navbar-collapse .navbar-nav > li > span {
     padding: 0 12px;
   }
 }
@@ -18886,6 +18895,18 @@ div.dataTables_wrapper div.dataTables_length label select {
 .padding-5 {
   padding: 5px !important;
 }
+.padding-6 {
+  padding: 6px !important;
+}
+.padding-7 {
+  padding: 7px !important;
+}
+.padding-8 {
+  padding: 8px !important;
+}
+.padding-9 {
+  padding: 9px !important;
+}
 .padding-10 {
   padding: 10px !important;
 }
@@ -19153,10 +19174,218 @@ div.dataTables_wrapper div.dataTables_length label select {
 .padding-right-50 {
   padding-right: 50px !important;
 }
+.vertical-align {
+  font-size: 0;
+}
+.vertical-align:before {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  content: "";
+}
+.vertical-align-middle,
+.vertical-align-bottom {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 14px;
+}
+.vertical-align-middle {
+  vertical-align: middle;
+}
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+.inline {
+  display: inline !important;
+}
+.inline-block {
+  display: inline-block !important;
+}
+.block {
+  display: block !important;
+}
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  /* for IE */
+  white-space: nowrap;
+}
+.text-break {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  white-space: normal;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+.text-top {
+  vertical-align: top !important;
+}
+.text-middle {
+  vertical-align: middle !important;
+}
+.text-bottom {
+  vertical-align: bottom !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+.font-weight-unset {
+  font-weight: unset !important;
+}
+.font-weight-100 {
+  font-weight: 100 !important;
+}
+.font-weight-200 {
+  font-weight: 200 !important;
+}
+.font-weight-300 {
+  font-weight: 300 !important;
+}
+.font-weight-400 {
+  font-weight: 400 !important;
+}
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+.font-weight-600 {
+  font-weight: 600 !important;
+}
+.font-weight-700 {
+  font-weight: 700 !important;
+}
+.font-weight-800 {
+  font-weight: 800 !important;
+}
+.font-weight-900 {
+  font-weight: 900 !important;
+}
+.font-weight-light {
+  font-weight: 300 !important;
+}
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+.font-weight-medium {
+  font-weight: 500 !important;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.font-size-0 {
+  font-size: 0 !important;
+}
+.font-size-10 {
+  font-size: 10px !important;
+}
+.font-size-12 {
+  font-size: 12px !important;
+}
+.font-size-14 {
+  font-size: 14px !important;
+}
+.font-size-16 {
+  font-size: 16px !important;
+}
+.font-size-18 {
+  font-size: 18px !important;
+}
+.font-size-20 {
+  font-size: 20px !important;
+}
+.font-size-24 {
+  font-size: 24px !important;
+}
+.font-size-26 {
+  font-size: 26px !important;
+}
+.font-size-30 {
+  font-size: 30px !important;
+}
+.font-size-38 {
+  font-size: 38px !important;
+}
+.font-size-40 {
+  font-size: 40px !important;
+}
+.font-size-50 {
+  font-size: 50px !important;
+}
+.font-size-60 {
+  font-size: 60px !important;
+}
+.font-size-70 {
+  font-size: 70px !important;
+}
+.font-size-80 {
+  font-size: 80px !important;
+}
 .icon {
   display: inline-block;
   width: 1em;
   text-align: center;
+}
+.icon-2x {
+  font-size: 2em;
+  line-height: 1.25em;
+}
+.icon-3x {
+  font-size: 3em;
+  line-height: 1.25em;
+}
+.icon-4x {
+  font-size: 4em;
+  line-height: 1.25em;
+}
+.icon-5x {
+  font-size: 5em;
+  line-height: 1.25em;
+}
+.wh-moon-waning-gibbous::before {
+  content: '\f530';
+}
+.wh-moon-third-quarter::before {
+  content: '\f531';
+}
+.wh-moon-waning-crescent::before {
+  content: '\f532';
+}
+.wh-moon-new-moon::before {
+  content: '\f52b';
+}
+.wh-moon-waxing-crescent::before {
+  content: '\f52c';
+}
+.wh-moon-first-quarter::before {
+  content: '\f52d';
+}
+.wh-moon-waxing-gibbous::before {
+  content: '\f52e';
+}
+.wh-moon-full-moon::before {
+  content: '\f52f';
 }
 /*@btn-floating-xs-padding:                10px;*/
 /*@btn-floating-sm-padding:                13px;*/
