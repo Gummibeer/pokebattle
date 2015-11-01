@@ -14,7 +14,7 @@
                     <div class="media-body">
                         <div class="clearfix">
                             <h4 class="media-heading pull-left">#{{ \Auth::User()->pokemon->id }} {{ \Auth::User()->pokemon->name }}</h4>
-                            <span class="pull-right">LvL {{ getCurLvl() }} | {{ getRelativeCurExp() }} / {{ getRelativeNeededExp() }} EXP</span>
+                            <span class="pull-right">LvL {{ getCurLvl() }} | {{ getCurExp() }} / {{ getNeededExp() }} EXP</span>
                         </div>
                         <div class="progress height-5 margin-bottom-5" data-toggle="tooltip" data-placement="bottom" title="{{ getLvlPercentage() }} %">
                             <div class="progress-bar" style="width: {{ getLvlPercentage() }}%;"></div>
@@ -24,10 +24,10 @@
                             {{ implode(', ', \Auth::User()->pokemon->types->pluck('name')->toArray()) }}
                         </div>
                         <ul class="list-inline margin-bottom-0">
-                            <li><strong>HP</strong> {{ \Auth::User()->pokemon->health }}</li>
-                            <li><strong>ATK</strong> {{ \Auth::User()->pokemon->attack }}</li>
-                            <li><strong>DEF</strong> {{ \Auth::User()->pokemon->defense }}</li>
-                            <li><strong>SPD</strong> {{ \Auth::User()->pokemon->speed }}</li>
+                            <li><strong>HP</strong> {{ getHealth() }}</li>
+                            <li><strong>ATK</strong> {{ getAtk() }}</li>
+                            <li><strong>DEF</strong> {{ getDef() }}</li>
+                            <li><strong>SPD</strong> {{ getSpd() }}</li>
                         </ul>
                         <div>
                             <strong>{{ trans('messages.moves') }}</strong>
@@ -69,6 +69,7 @@
                             <li><strong>ATK</strong> {{ $pokemonOfTheDay->attack }}</li>
                             <li><strong>DEF</strong> {{ $pokemonOfTheDay->defense }}</li>
                             <li><strong>SPD</strong> {{ $pokemonOfTheDay->speed }}</li>
+                            <li><strong>EXP</strong> {{ $pokemonOfTheDay->experience }}</li>
                         </ul>
                         <div>
                             <strong>{{ trans('messages.moves') }}</strong>

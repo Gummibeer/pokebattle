@@ -20,7 +20,6 @@
 * **DEF** `= floor((2 * base) * curLevel / 100 + 5)`
 * **SPD** `= floor((2 * base) * curLevel / 100 + 5)`
 * **Damage** `= floor((2 * curLevel + 10) * (ownATK / enemyDEF) + 2) * (Power / 100)`
-* **needed EXP** `= floor(base * 2 ^ (curLevel - 1))`
 * **received EXP** `= max(floor(((curLevel / 2) + 5 + (enemyLevel - curLevel), 0)`
 * **Rank** `= floor((curEXP + permEXP) * min(max(((kills /deaths), 0.8), 1.2))`
 
