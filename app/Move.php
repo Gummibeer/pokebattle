@@ -14,6 +14,9 @@ class Move extends Model
         'power',
     ];
     protected $hidden = [];
+    protected $appends = [
+        'display_name',
+    ];
 
     protected $casts = [
         'id' => 'int',
@@ -25,9 +28,9 @@ class Move extends Model
         return $this->belongsToMany(Pokemon::class, 'pokemon_move', 'move_id', 'pokemon_id');
     }
 
-    public function getNameAttribute($value)
+    public function getDisplayNameAttribute()
     {
-        return trans('moves.' . $value);
+        return trans('moves.' . $this->name);
     }
 
     public function scopeName($query, $name)

@@ -28,6 +28,9 @@
                 <li>
                     <span data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.moon.'.$moonPhase['today']) }}"><i class="icon wh-moon-{{ $moonPhase['today'] }} icon-2x"></i></span>
                 </li>
+                <li>
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{ \Auth::user()->pokemon->display_name }} LvL {{ getCurLvl() }}"><i class="icon wh-pokemon icon-2x"></i></span>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right am-user-nav">

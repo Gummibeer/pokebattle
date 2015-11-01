@@ -13,6 +13,9 @@ class Type extends Model
         'name',
     ];
     protected $hidden = [];
+    protected $appends = [
+        'display_name',
+    ];
 
     protected $casts = [
         'id' => 'int',
@@ -53,9 +56,9 @@ class Type extends Model
         return 1;
     }
 
-    public function getNameAttribute($value)
+    public function getDisplayNameAttribute()
     {
-        return trans('types.' . $value);
+        return trans('types.' . $this->name);
     }
 
     public function scopeName($query, $name)

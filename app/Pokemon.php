@@ -21,6 +21,7 @@ class Pokemon extends Model
 
     protected $appends = [
         'avatar',
+        'display_name',
     ];
 
     protected $casts = [
@@ -67,9 +68,9 @@ class Pokemon extends Model
         }
     }
 
-    public function getNameAttribute($value)
+    public function getDisplayNameAttribute()
     {
-        return trans('pokemons.' . $value);
+        return trans('pokemons.' . $this->name);
     }
 
     public function scopeName($query, $name)
