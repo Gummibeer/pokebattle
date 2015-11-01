@@ -14,7 +14,7 @@
                     <div class="media-body">
                         <div class="clearfix">
                             <h4 class="media-heading pull-left">#{{ \Auth::User()->pokemon->id }} {{ \Auth::User()->pokemon->display_name }}</h4>
-                            <span class="pull-right">LvL {{ getCurLvl() }} | {{ getCurExp() }} / {{ getNeededExp() }} EXP</span>
+                            <span class="pull-right">LvL {{ getCurLvl() }} | {{ getRelativeCurExp() }} / {{ getRelativeNeededExp() }} EXP</span>
                         </div>
                         <div class="progress height-5 margin-bottom-5" data-toggle="tooltip" data-placement="bottom" title="{{ getLvlPercentage() }} %">
                             <div class="progress-bar" style="width: {{ getLvlPercentage() }}%;"></div>
