@@ -19,6 +19,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'name',
         'email',
         'password',
+        'bot',
     ];
 
     protected $hidden = [
@@ -45,8 +46,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->pokemons()->wherePivot('active', 1);
     }
 
+    public function getPokemonAttribute()
+    {
+        return $this->pokemon()->withPivot('experience')->first();
+    }
+
     public function avatar($size = 64)
     {
         return 'https://gravatar.com/avatar/' . md5($this->email) . '?d=mm&s=' . $size;
+    }
+
+    public function scopeBot($query)
+    {
+        return $query->where('bot', true);
     }
 }

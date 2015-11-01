@@ -307,6 +307,7 @@
 .wi-rain-wind:before {
   content: "\f018";
 }
+.wi-drizzle:before,
 .wi-showers:before {
   content: "\f01a";
 }

@@ -14,13 +14,13 @@
             <div class="form-group row">
                 <div class="col-xs-6">
                     <a href="#" class="btn btn-block btn-labeled social-facebook">
-                        <span class="btn-label"><i class="icon fa fa-facebook"></i></span>
+                        <span class="btn-label"><i class="icon wh-facebook"></i></span>
                         Facebook
                     </a>
                 </div>
                 <div class="col-xs-6">
                     <a href="#" class="btn btn-block btn-labeled social-github">
-                        <span class="btn-label"><i class="icon fa fa-github"></i></span>
+                        <span class="btn-label"><i class="icon wh-github"></i></span>
                         Github
                     </a>
                 </div>

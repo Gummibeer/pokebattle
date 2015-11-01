@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('kills')->unsigned();
             $table->integer('deaths')->unsigned();
             $table->rememberToken();
+            $table->boolean('bot')->default(false);
             $table->timestamps();
         });
     }

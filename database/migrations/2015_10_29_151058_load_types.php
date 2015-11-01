@@ -30,15 +30,16 @@ class LoadTypes extends Migration
         }
         $output->writeln('created ' . \App\Type::count() . ' types');
 
-        foreach ($typeEffectRelations as $type) {
-            $typeNames = $type['ineffective'];
-            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
-            $type->types()->sync($typeIds, ['value' => -1]);
+        foreach ($typeEffectRelations as $id => $data) {
+            $type = \App\Type::find($id);
+            $typeNames = $data['ineffective'];
+            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id')->toArray();
+            $type->types()->attach($typeIds, ['value' => -1]);
             $output->writeln('attached ineffectives ' . $type->ineffectives()->lists('id') . ' to #' . $type->id);
 
-            $typeNames = $type['effective'];
-            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
-            $type->types()->sync($typeIds, ['value' => 1]);
+            $typeNames = $data['effective'];
+            $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id')->toArray();
+            $type->types()->attach($typeIds, ['value' => 1]);
             $output->writeln('attached effectives ' . $type->effectives()->lists('id') . ' to #' . $type->id);
         }
     }

@@ -29,12 +29,12 @@ class LoadPokemons extends Migration
                     $output->writeln('created #' . $pokemon->id . ' - ' . $pokemon->name);
 
                     $typeNames = array_column($body['types'], 'name');
-                    $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id');
+                    $typeIds = \App\Type::whereIn('name', $typeNames)->lists('id')->toArray();
                     $pokemon->types()->sync($typeIds);
                     $output->writeln('attached types ' . $pokemon->types()->lists('id') . ' to #' . $pokemon->id);
 
                     $moveNames = array_column($body['moves'], 'name');
-                    $moveIds = \App\Move::whereIn('name', $moveNames)->lists('id');
+                    $moveIds = \App\Move::whereIn('name', $moveNames)->lists('id')->toArray();
                     $pokemon->moves()->sync($moveIds);
                     $output->writeln('attached moves ' . $pokemon->moves()->lists('id') . ' to #' . $pokemon->id);
                 }

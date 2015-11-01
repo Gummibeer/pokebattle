@@ -5,6 +5,42 @@
         <div class="col-md-3">
             <div class="widget">
                 <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="{{ \Auth::User()->pokemon->avatar }}" alt="{{ \Auth::User()->pokemon->name }}">
+                    </div>
+                    <div class="media-body">
+                        <div class="clearfix">
+                            <h4 class="media-heading pull-left">#{{ \Auth::User()->pokemon->id }} {{ \Auth::User()->pokemon->name }}</h4>
+                            <span class="pull-right">LvL {{ getCurLvl() }} | {{ getRelativeCurExp() }} / {{ getRelativeNeededExp() }} EXP</span>
+                        </div>
+                        <div class="progress height-5 margin-bottom-5" data-toggle="tooltip" data-placement="bottom" title="{{ getLvlPercentage() }} %">
+                            <div class="progress-bar" style="width: {{ getLvlPercentage() }}%;"></div>
+                        </div>
+                        <div>
+                            <strong>{{ trans('messages.types') }}</strong>
+                            {{ implode(', ', \Auth::User()->pokemon->types->pluck('name')->toArray()) }}
+                        </div>
+                        <ul class="list-inline margin-bottom-0">
+                            <li><strong>HP</strong> {{ \Auth::User()->pokemon->health }}</li>
+                            <li><strong>ATK</strong> {{ \Auth::User()->pokemon->attack }}</li>
+                            <li><strong>DEF</strong> {{ \Auth::User()->pokemon->defense }}</li>
+                            <li><strong>SPD</strong> {{ \Auth::User()->pokemon->speed }}</li>
+                        </ul>
+                        <div>
+                            <strong>{{ trans('messages.moves') }}</strong>
+                            {{ \Auth::User()->pokemon->moves->count() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="widget">
+                <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.pokemons_per_type') }}</h3>
                 </div>
                 <div class="chart-container">

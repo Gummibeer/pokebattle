@@ -76,4 +76,9 @@ class Pokemon extends Model
     {
         return $query->where('name', $name);
     }
+
+    public function scopeStarter($query)
+    {
+        return $query->whereIn('id', [1,4,7,25,152,155,158,252,255,258,495,498,501]);
+    }
 }
