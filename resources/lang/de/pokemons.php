@@ -15,6 +15,8 @@ return [
 
     'Oddish'        => 'Myrapla', #43
 
+    'Dewgong'       => 'Jugong', #87
+
     'Chikorita'     => 'Endivie', #152
 
     'Cyndaquil'     => 'Feurigel', #155
