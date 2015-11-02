@@ -34,6 +34,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'looses' => 'int',
         'kills' => 'int',
         'deaths' => 'int',
+        'bot' => 'bool',
     ];
 
     public function pokemons()
@@ -43,12 +44,51 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function pokemon()
     {
-        return $this->pokemons()->wherePivot('active', 1);
+        return $this->pokemons()->wherePivot('active', 1)->withPivot('experience');
     }
 
     public function getPokemonAttribute()
     {
-        return $this->pokemon()->withPivot('experience')->first();
+        return $this->pokemon()->first();
+    }
+
+    public function won($experience, $isAttacker)
+    {
+        $this->addExperience($experience);
+        $this->increment('wins');
+        if($isAttacker) {
+            $this->increment('kills');
+        }
+        if($this->kills % 10 == 0) {
+            $this->increment('experience');
+        }
+    }
+
+    public function loose($isAttacker)
+    {
+        $this->increment('looses');
+        if($isAttacker) {
+            $this->resetExperience();
+            $this->increment('deaths');
+        }
+    }
+
+    public function addExperience($amount)
+    {
+        $this->pokemons()->sync([
+            $this->pokemon->id => [
+                'experience' => $this->pokemon->pivot->experience + $amount,
+            ]
+        ], false);
+    }
+
+    public function resetExperience()
+    {
+        $this->pokemons()->sync([
+            $this->pokemon->id => [
+                'experience' => 0,
+            ]
+        ], false);
     }
 
     public function avatar($size = 64)

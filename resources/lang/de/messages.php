@@ -40,4 +40,6 @@ return [
 
     'types' => 'Typen',
     'moves' => 'Fähigkeiten',
+
+    'rounds' => 'Runden',
 ];

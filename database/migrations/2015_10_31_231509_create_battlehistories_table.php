@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBattlehistoryTable extends Migration
+class CreateBattlehistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBattlehistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('battlehistory', function (Blueprint $table) {
+        Schema::create('battlehistories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('attacker_user_id')->unsigned();
             $table->foreign('attacker_user_id')->references('id')->on('users');
@@ -23,6 +23,7 @@ class CreateBattlehistoryTable extends Migration
             $table->integer('defender_pokemon_id')->unsigned();
             $table->foreign('defender_pokemon_id')->references('id')->on('pokemons');
             $table->boolean('attacker_win');
+            $table->integer('rounds')->unsigned();
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateBattlehistoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('battlehistory');
+        Schema::dropIfExists('battlehistories');
     }
 }

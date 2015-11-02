@@ -107,6 +107,34 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="col-md-3">
+            <div class="widget">
+                <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.pokemon_of_the_day') }}</h3>
+                </div>
+                <div class="list-group">
+                    @foreach($battlehistories as $battlehistory)
+                        <div class="list-group-item">
+                            <div class="list-group-item-heading">
+                                <strong>{{ $battlehistory->attacker->name }}</strong>
+                                <i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->attackerPokemon->display_name }}"></i>
+                                vs
+                                <strong>{{ $battlehistory->defender->name }}</strong>
+                                <i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->defenderPokemon->display_name }}"></i>
+                            </div>
+                            <div class="list-group-item-text">
+                                <ul class="list-inline margin-bottom-0">
+                                    <li><i class="icon wh-trophy"></i> @if($battlehistory->attacker_win) {{ $battlehistory->attacker->name }} @else {{ $battlehistory->defender->name }} @endif</li>
+                                    <li><i class="icon wh-stopwatch"></i> {{ $battlehistory->rounds }} {{ trans('messages.rounds') }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

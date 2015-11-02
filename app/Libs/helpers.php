@@ -70,7 +70,7 @@ if (!function_exists('getHealth')) {
     function getHealth(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->health) * getCurLvl($user) / 100) + getCurLvl($user) + 20);
+        return ceil(((2 * $user->pokemon->health) * getCurLvl($user) / 100) + getCurLvl($user) + 30);
     }
 }
 
@@ -95,5 +95,13 @@ if (!function_exists('getSpd')) {
     {
         $user = is_null($user) ? \Auth::User() : $user;
         return floor(((2 * $user->pokemon->speed) * getCurLvl($user) / 100) + 5);
+    }
+}
+
+// DAMAGE
+if (!function_exists('calcDmg')) {
+    function calcDmg(\App\User $attacker, \App\Move $move, \App\User $defender)
+    {
+        return floor((2 * getCurLvl($attacker) + 10) * (getAtk($attacker) / getDef($defender)) + 2) * ($move->power / 100);
     }
 }
