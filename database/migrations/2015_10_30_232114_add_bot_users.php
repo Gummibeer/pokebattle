@@ -34,11 +34,11 @@ class AddBotUsers extends Migration
 
     public function up()
     {
-        $pokemonIds = \App\Pokemon::lists('id')->toArray();
+        $pokemonIds = \App\Pokemon::starter()->lists('id')->toArray();
         foreach($this->trainers as $trainer) {
             $bot = \App\User::create([
                 'name' => $trainer.' [BOT]',
-                'email' => strtolower($trainer).'@pokebattle.de',
+                'email' => strtolower($trainer).'.bot@pokebattle.de',
                 'bot' => true,
             ]);
             $bot->pokemons()->attach(array_rand($pokemonIds), ['active' => true]);
