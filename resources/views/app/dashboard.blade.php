@@ -21,7 +21,7 @@
                         </div>
                         <div>
                             <strong>{{ trans('messages.types') }}</strong>
-                            {{ implode(', ', \Auth::User()->pokemon->types->pluck('name')->toArray()) }}
+                            {{ implode(', ', \Auth::User()->pokemon->types->pluck('display_name')->toArray()) }}
                         </div>
                         <ul class="list-inline margin-bottom-0">
                             <li><strong>HP</strong> {{ getHealth() }}</li>
@@ -72,7 +72,7 @@
                     <h3 class="panel-title">{{ trans('messages.pokemons_per_type') }}</h3>
                 </div>
                 <div class="chart-container">
-                    <canvas id="type-radar" height="200px" data-label="{{ trans('messages.pokemons_per_type') }}" data-labels="{{ $types->pluck('name')->toJson() }}" data-dataset="{{ $types->map(function($item) { return $item->pokemons->count(); })->toJson() }}"></canvas>
+                    <canvas id="type-radar" height="200px" data-label="{{ trans('messages.pokemons_per_type') }}" data-labels="{{ $types->pluck('display_name')->toJson() }}" data-dataset="{{ $types->map(function($item) { return $item->pokemons->count(); })->toJson() }}"></canvas>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                         <h4 class="media-heading">#{{ $pokemonOfTheDay->id }} {{ $pokemonOfTheDay->display_name }}</h4>
                         <div>
                             <strong>{{ trans('messages.types') }}</strong>
-                            {{ implode(', ', $pokemonOfTheDay->types->pluck('name')->toArray()) }}
+                            {{ implode(', ', $pokemonOfTheDay->types->pluck('display_name')->toArray()) }}
                         </div>
                         <ul class="list-inline margin-bottom-0">
                             <li><strong>HP</strong> {{ $pokemonOfTheDay->health }}</li>
