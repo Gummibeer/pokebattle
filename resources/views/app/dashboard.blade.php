@@ -1,8 +1,8 @@
 @extends('app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row masonry-container">
+        <div class="col-md-3 col-xs-12 masonry-item masonry-sizer">
             <div class="widget">
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.arena_weather') }}</h3>
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.pokemons_per_type') }}</h3>
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.pokemon_of_the_day') }}</h3>
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.battlehistories') }}</h3>
@@ -131,21 +131,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="widget">
-                <div class="widget-head">
-                    <h3 class="panel-title">{{ trans('messages.battlehistories') }}</h3>
-                </div>
-                <div class="height-150 nano has-scrollbar">
-                    <div class="nano-content">
-                        @foreach(\Auth::User()->battlemessages as $battlemessage)
-                            {!! \Michelf\MarkdownExtra::defaultTransform($battlemessage->message) !!}
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </div>
