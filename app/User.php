@@ -140,4 +140,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $query->where('bot', true);
     }
+
+    public function scopePlayer($query)
+    {
+        return $query->where('bot', false);
+    }
 }
