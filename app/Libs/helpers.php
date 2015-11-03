@@ -102,6 +102,38 @@ if (!function_exists('getSpd')) {
 if (!function_exists('calcDmg')) {
     function calcDmg(\App\User $attacker, \App\Move $move, \App\User $defender)
     {
-        return floor((2 * getCurLvl($attacker) + 10) * (getAtk($attacker) / getDef($defender)) + 2) * ($move->power / 100);
+        return round(
+            ((2 * (getCurLvl($attacker) + 10)) * (getAtk($attacker) / getDef($defender)) + 2) *
+            ($move->power / 100) *
+            (1 + (0.2 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender))))
+        , 1);
+    }
+}
+
+if (!function_exists('getWeatherEffectiveness')) {
+    function getWeatherEffectiveness($type)
+    {
+        if(is_array($type)) {
+            $effectiveness = 0;
+            foreach($type as $t) {
+                $effectiveness += getWeatherEffectiveness($t);
+            }
+            return $effectiveness;
+        } else {
+            return in_array($type, getWeatherByDate(\Carbon\Carbon::today())['types']) ? 1 : 0;
+        }
+    }
+}
+
+// WEATHER
+if (!function_exists('getWeatherByDate')) {
+    function getWeatherByDate(\Carbon\Carbon $date)
+    {
+        $weatherRatio = (array) config('weather.ratio');
+        shuffle($weatherRatio);
+        return \Cache::rememberForever(str_slug('weather ' . $date->toDateString()), function () use ($weatherRatio) {
+            $type = array_get($weatherRatio, rand(0, count($weatherRatio) - 1), 'sun');
+            return config('weather.' . $type);
+        });
     }
 }

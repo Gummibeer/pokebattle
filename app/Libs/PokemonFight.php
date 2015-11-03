@@ -2,6 +2,7 @@
 namespace App\Libs;
 
 use App\Battlehistory;
+use App\Battlemessage;
 use App\User;
 
 class PokemonFight
@@ -38,8 +39,29 @@ class PokemonFight
         $attackerTrainer = $this->getTrainerByPokemon($this->pokemons->first());
         $defenderTrainer = $this->getTrainerByPokemon($this->pokemons->last());
         $defender = $this->pokemons->pop();
-        $defender['health'] -= calcDmg($attackerTrainer, $move, $defenderTrainer);
+        $damage = calcDmg($attackerTrainer, $move, $defenderTrainer);
+        $defender['health'] -= $damage;
         $this->pokemons->push($defender);
+        Battlemessage::create([
+            'user_id' => $attackerTrainer->id,
+            'message_key' => 'move',
+            'data' => [
+                'attacker' => $attackerTrainer->pokemon->id,
+                'defender' => $defenderTrainer->pokemon->id,
+                'move' => $move->id,
+                'damage' => $damage,
+            ],
+        ]);
+        Battlemessage::create([
+            'user_id' => $defenderTrainer->id,
+            'message_key' => 'move',
+            'data' => [
+                'attacker' => $attackerTrainer->pokemon->id,
+                'defender' => $defenderTrainer->pokemon->id,
+                'move' => $move->id,
+                'damage' => $damage,
+            ],
+        ]);
     }
 
     private function end()

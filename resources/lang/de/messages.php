@@ -17,6 +17,7 @@ return [
     'pokemons_per_type' => 'Pokémons pro Typ',
     'pokemon_of_the_day' => 'Pokémon des Tages',
     'arena_weather' => 'Arena-Wetter',
+    'battlehistories' => 'Arena-Verlauf',
 
     'moon' => [
         'waning-gibbous' => 'drittes Viertel',

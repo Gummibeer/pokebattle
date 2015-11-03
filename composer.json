@@ -12,7 +12,8 @@
         "maknz/slack": "1.7.0",
         "barryvdh/laravel-ide-helper": "^2.1",
         "guzzlehttp/guzzle": "^6.1",
-        "solaris/php-moon-phase": "v1.1.1"
+        "solaris/php-moon-phase": "v1.1.1",
+        "michelf/php-markdown": "1.5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

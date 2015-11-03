@@ -43,8 +43,8 @@ class Type extends Model
 
     public function getEffectivenessAgainst($type)
     {
+        $effectiveness = 0;
         if ($type instanceof Type) {
-            $effectiveness = 1;
             $effectiveness += $this->ineffectives()->where('id', $type->id)->count() > 0 ? -0.5 : 0;
             $effectiveness += $this->effectives()->where('id', $type->id)->count() > 0 ? 1 : 0;
             return $effectiveness;
@@ -53,7 +53,7 @@ class Type extends Model
         } elseif (is_string($type)) {
             return $this->getEffectivenessAgainst(Type::name($type)->first());
         }
-        return 1;
+        return $effectiveness;
     }
 
     public function getDisplayNameAttribute()

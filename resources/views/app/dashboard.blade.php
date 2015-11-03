@@ -108,15 +108,14 @@
             </div>
         </div>
 
-
         <div class="col-md-3">
             <div class="widget">
                 <div class="widget-head">
-                    <h3 class="panel-title">{{ trans('messages.pokemon_of_the_day') }}</h3>
+                    <h3 class="panel-title">{{ trans('messages.battlehistories') }}</h3>
                 </div>
-                <div class="list-group">
+                <div class="list-group margin-bottom-0">
                     @foreach($battlehistories as $battlehistory)
-                        <div class="list-group-item">
+                        <div class="list-group-item padding-horizontal-0 padding-vertical-5">
                             <div class="list-group-item-heading">
                                 <strong>{{ $battlehistory->attacker->name }}</strong>
                                 <i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->attackerPokemon->display_name }}"></i>
@@ -132,6 +131,21 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="widget">
+                <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.battlehistories') }}</h3>
+                </div>
+                <div class="height-150 nano has-scrollbar">
+                    <div class="nano-content">
+                        @foreach(\Auth::User()->battlemessages as $battlemessage)
+                            {!! \Michelf\MarkdownExtra::defaultTransform($battlemessage->message) !!}
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

@@ -37,6 +37,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'bot' => 'bool',
     ];
 
+    public function battlemessages()
+    {
+        return $this->hasMany(Battlemessage::class, 'user_id', 'id');
+    }
+
     public function pokemons()
     {
         return $this->belongsToMany(Pokemon::class, 'user_pokemon', 'user_id', 'pokemon_id');
@@ -52,25 +57,60 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->pokemon()->first();
     }
 
+    public function getEffectivenessAgainst($user)
+    {
+        $effectiveness = 0;
+        if (is_numeric($user)) {
+            $user = User::find($user);
+        } elseif (is_string($user)) {
+            $user = User::name($user)->first();
+        }
+
+        if ($user instanceof User) {
+            foreach ($this->pokemon->types as $causeType) {
+                foreach ($user->pokemon->types as $aimType) {
+                    $effectiveness += $causeType->getEffectivenessAgainst($aimType);
+                }
+            }
+        }
+        return $effectiveness;
+    }
+
     public function won($experience, $isAttacker)
     {
         $this->addExperience($experience);
         $this->increment('wins');
-        if($isAttacker) {
+        if ($isAttacker) {
             $this->increment('kills');
         }
-        if($this->kills % 10 == 0) {
+        if ($this->kills % 10 == 0) {
             $this->increment('experience');
         }
+
+        Battlemessage::create([
+            'user_id' => $this->id,
+            'message_key' => 'win',
+            'data' => [
+                'winner' => $this->pokemon->id,
+            ],
+        ]);
     }
 
     public function loose($isAttacker)
     {
         $this->increment('looses');
-        if($isAttacker) {
+        if ($isAttacker) {
             $this->resetExperience();
             $this->increment('deaths');
         }
+
+        Battlemessage::create([
+            'user_id' => $this->id,
+            'message_key' => 'loose',
+            'data' => [
+                'looser' => $this->pokemon->id,
+            ],
+        ]);
     }
 
     public function addExperience($amount)

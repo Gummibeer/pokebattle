@@ -16,10 +16,7 @@ class Battlehistory extends Model
         'rounds',
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
 
     protected $casts = [
         'id' => 'int',
