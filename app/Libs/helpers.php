@@ -105,7 +105,7 @@ if (!function_exists('calcDmg')) {
         return round(
             ((2 * (getCurLvl($attacker) + 10)) * (getAtk($attacker) / getDef($defender)) + 2) *
             ($move->power / 100) *
-            (1 + (0.2 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender))))
+            (1 + (0.5 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender))))
         , 1);
     }
 }
