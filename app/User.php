@@ -115,11 +115,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function addExperience($amount)
     {
+        $beforeLevel = getCurLvl($this);
         $this->pokemons()->sync([
             $this->pokemon->id => [
                 'experience' => $this->pokemon->pivot->experience + $amount,
             ]
         ], false);
+        $afterLevel = getCurLvl($this);
+        if($afterLevel > $beforeLevel && $afterLevel % 10 == 0) {
+            \Slack::to(config('slack.channel'))->withIcon(':tada:')->send('*CONGRATULATIONS*'.PHP_EOL.'_'.$this->name . '_ has reached Level ' . $afterLevel);
+        }
     }
 
     public function resetExperience()
