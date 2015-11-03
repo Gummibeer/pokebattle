@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-2 col-lg-offset-5 col-md-4 col-md-offset-4">
             <div class="text-center">
-                <h1>{{ trans('messages.pokebattle') }}</h1>
+                <h1 class="white">{{ trans('messages.pokebattle') }}</h1>
             </div>
 
             @yield('content')

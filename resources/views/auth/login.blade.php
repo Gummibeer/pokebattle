@@ -26,4 +26,7 @@
         ]) !!}
     </div>
     {!! Form::close() !!}
+    <p class="pull-right">
+        noch kein Account? Dann <a href="{{ url('auth/register') }}">registriere</a> dich doch.
+    </p>
 @endsection

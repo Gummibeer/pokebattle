@@ -10,4 +10,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function __construct()
+    {
+        view()->share('battlemessages', \Auth::User()->battlemessages()->orderBy('created_at', 'desc')->limit(25)->get());
+    }
 }

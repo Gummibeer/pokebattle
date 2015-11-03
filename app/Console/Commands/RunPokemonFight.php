@@ -14,12 +14,8 @@ class RunPokemonFight extends Command
     {
         $attackerID = $this->argument('attacker');
         $defenderID = $this->argument('defender');
-        dump($attackerID);
-        dump($defenderID);
         $attacker = is_null($attackerID) ? User::player()->get()->random() : User::findOrFail($attackerID);
         $defender = is_null($defenderID) ? User::where('id', '<>', $attacker->id)->get()->random() : User::findOrFail($defenderID);
-        dump($attacker);
-        dump($defender);
         $fight = new PokemonFight($attacker, $defender);
         $fight->run();
     }

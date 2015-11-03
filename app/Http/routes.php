@@ -15,6 +15,7 @@ Route::controller('auth', 'Auth\AuthController');
 
 Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], function () {
     Route::get('dashboard', 'DashboardController@getIndex');
+    Route::controller('pokedex', 'PokedexController');
 });
 
 // ALIASES

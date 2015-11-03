@@ -8,6 +8,12 @@
                     <span>{{ trans('menu.home') }}</span>
                 </a>
             </li>
+            <li class="@if(Request::is('app/pokedex*')) active @endif">
+                <a href="{{ url('app/pokedex') }}" class="text-center">
+                    <i class="icon wh-indexmanager"></i>
+                    <span>{{ trans('menu.pokedex') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

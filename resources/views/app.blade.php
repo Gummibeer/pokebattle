@@ -8,3 +8,7 @@
 @section('layout')
     @yield('content')
 @endsection
+
+@section('post-content')
+    @include('partials.history')
+@endsection

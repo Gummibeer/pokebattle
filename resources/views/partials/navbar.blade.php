@@ -11,6 +11,9 @@
                 <i class="icon wh-pokemon icon-2x"></i>
             </a>
         </div>
+        <a href="#" class="am-toggle-right-sidebar">
+            <span class="icon wh-dropmenu"></span>
+        </a>
         <a href="#" data-toggle="collapse" data-target="#am-navbar-collapse" class="am-toggle-top-header-menu collapsed">
             <i class="icon wh-chevron-down"></i>
         </a>
