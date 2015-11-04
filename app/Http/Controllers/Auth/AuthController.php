@@ -75,7 +75,7 @@ class AuthController extends Controller
 
     public function getSlack(Request $request)
     {
-        if(\Auth::check() && !is_null(\Auth::User()->slack)) {
+        if (\Auth::check() && !is_null(\Auth::User()->slack)) {
             return redirect('auth/slackcallback');
         } else {
             $params = [
@@ -92,17 +92,17 @@ class AuthController extends Controller
     public function getSlackcallback(Request $request)
     {
         $code = \Input::get('code', false);
-        if($code) {
+        if ($code) {
             $data = [
                 'client_id' => config('services.slack.client_id'),
                 'client_secret' => config('services.slack.client_secret'),
                 'redirect_uri' => config('services.slack.redirect'),
                 'code' => $code,
             ];
-            $url = 'https://slack.com/api/oauth.access?'.http_build_query($data);
+            $url = 'https://slack.com/api/oauth.access?' . http_build_query($data);
             $response = \Curl::get($url);
             $response['body'] = json_decode($response['body'], true);
-            if($response['body']['ok']) {
+            if ($response['body']['ok']) {
                 $token = $response['body']['access_token'];
 
                 $data = [
@@ -115,12 +115,12 @@ class AuthController extends Controller
                     $userId = $response['body']['user_id'];
                 }
             }
-        } elseif(\Auth::check() && !is_null(\Auth::User()->slack)) {
+        } elseif (\Auth::check() && !is_null(\Auth::User()->slack)) {
             $userId = \Auth::User()->slack;
             $token = config('services.slack.token');
         }
 
-        if(isset($token) && isset($userId)) {
+        if (isset($token) && isset($userId)) {
             $data = [
                 'token' => $token,
                 'user' => $userId,
@@ -167,7 +167,7 @@ class AuthController extends Controller
     {
         if (\Auth::check()) {
             \Auth::User()->saveOauthId($provider, $oAuthUser->getId());
-            return redirect('app/profile/edit/'.\Auth::User()->id);
+            return redirect('app/profile/edit/' . \Auth::User()->id);
         } else {
             $user = User::$provider($oAuthUser->getId())->first();
             if (is_null($user)) {

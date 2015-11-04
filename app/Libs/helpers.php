@@ -106,16 +106,16 @@ if (!function_exists('calcDmg')) {
             ((2 * (getCurLvl($attacker) + 10)) * (getAtk($attacker) / getDef($defender)) + 2) *
             ($move->power / 100) *
             (1 + (0.5 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender))))
-        , 1);
+            , 1);
     }
 }
 
 if (!function_exists('getWeatherEffectiveness')) {
     function getWeatherEffectiveness($type)
     {
-        if(is_array($type)) {
+        if (is_array($type)) {
             $effectiveness = 0;
-            foreach($type as $t) {
+            foreach ($type as $t) {
                 $effectiveness += getWeatherEffectiveness($t);
             }
             return $effectiveness;
@@ -129,7 +129,7 @@ if (!function_exists('getWeatherEffectiveness')) {
 if (!function_exists('getWeatherByDate')) {
     function getWeatherByDate(\Carbon\Carbon $date)
     {
-        $weatherRatio = (array) config('weather.ratio');
+        $weatherRatio = (array)config('weather.ratio');
         shuffle($weatherRatio);
         return \Cache::rememberForever(str_slug('weather ' . $date->toDateString()), function () use ($weatherRatio) {
             $type = array_get($weatherRatio, rand(0, count($weatherRatio) - 1), 'sun');
@@ -142,7 +142,7 @@ if (!function_exists('getWeatherByDate')) {
 if (!function_exists('transd')) {
     function transd($key, $default = null)
     {
-        if(Lang::has($key)) {
+        if (Lang::has($key)) {
             return Lang::trans($key);
         } else {
             return $default;
