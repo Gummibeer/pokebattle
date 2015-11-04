@@ -124,7 +124,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $beforeLevel = getCurLvl($this);
         $this->pokemons()->sync([
             $this->pokemon->id => [
-                'experience' => $this->pokemon->pivot->experience + $amount,
+                'experience' => ceil($this->pokemon->pivot->experience + $amount),
             ]
         ], false);
         $afterLevel = getCurLvl($this);
@@ -137,7 +137,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $this->pokemons()->sync([
             $this->pokemon->id => [
-                'experience' => $this->pokemon->pivot->experience * 0.25,
+                'experience' => ceil($this->pokemon->pivot->experience * 0.25),
             ]
         ], false);
     }
