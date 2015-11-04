@@ -43,19 +43,10 @@ class Pokemon extends Model
         return $this->belongsToMany(Move::class, 'pokemon_move', 'pokemon_id', 'move_id');
     }
 
-//    public function isEffectiveAgainst($value)
-//    {
-//        if($value instanceof Type) {
-//
-//        } elseif($value instanceof Pokemon) {
-//
-//        } elseif(is_numeric($value)) {
-//            return $this->isEffectiveAgainst(Type::find($value));
-//        } elseif(is_string($value)) {
-//            return $this->isEffectiveAgainst(Type::name($value)->first());
-//        }
-//        return false;
-//    }
+    public function trainers()
+    {
+        return $this->belongsToMany(User::class, 'user_pokemon', 'pokemon_id', 'user_id');
+    }
 
     public function getAvatarAttribute()
     {
@@ -71,6 +62,12 @@ class Pokemon extends Model
     public function getDisplayNameAttribute()
     {
         return transd('pokemons.' . $this->name, $this->name);
+    }
+
+    public function catched(User $user = null)
+    {
+        $user = is_null($user) ? \Auth::User() : $user;
+        return (bool) $this->trainers()->where('id', $user->id)->count();
     }
 
     public function scopeName($query, $name)
