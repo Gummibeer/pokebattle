@@ -10,7 +10,7 @@ class PokedexController extends Controller
     public function getIndex()
     {
         return view('app.pokedex.index')->with([
-            'pokemons' => Pokemon::all(),
+            'pokemons' => Pokemon::paginate(50),
         ]);
     }
 }

@@ -5,6 +5,9 @@
         <header class="panel-heading">
             <h3 class="panel-title">{{ trans('menu.pokedex') }}</h3>
         </header>
+        <div class="panel-body">
+            {!! $pokemons->render() !!}
+        </div>
         <div class="list-group">
             @foreach($pokemons as $pokemon)
                 <div class="list-group-item" id="pokemon-{{ $pokemon->id }}">
@@ -33,6 +36,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="panel-footer">
+            {!! $pokemons->render() !!}
         </div>
     </article>
 @endsection
