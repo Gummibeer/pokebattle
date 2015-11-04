@@ -108,7 +108,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         if ($isAttacker) {
             $this->increment('kills');
         }
-        if ($this->kills % 10 == 0) {
+        if ($this->kills > 0 && $this->kills % 10 == 0) {
             $this->increment('experience', floor(pow(getCurLvl($this), 0.5)));
         }
 
@@ -156,7 +156,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $this->pokemons()->sync([
             $this->pokemon->id => [
-                'experience' => ceil($this->pokemon->pivot->experience * 0.33),
+                'experience' => ceil($this->pokemon->pivot->experience * 0.5),
             ]
         ], false);
     }
