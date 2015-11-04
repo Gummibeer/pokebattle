@@ -13,7 +13,7 @@ abstract class Controller extends BaseController
 
     public function __construct()
     {
-        view()->share('battlemessages', \Auth::User()->battlemessages()->orderBy('created_at', 'desc')->limit(25)->get());
-        view()->share('battlehistories', Battlehistory::orderBy('created_at', 'desc')->limit(5)->get());
+        view()->share('battlemessages', \Auth::User()->battlemessages()->orderBy('created_at', 'desc')->limit(50)->get());
+        view()->share('battlehistories', Battlehistory::orderBy('created_at', 'desc')->limit(50)->get());
     }
 }
