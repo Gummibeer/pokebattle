@@ -7,37 +7,40 @@
         </header>
         <div class="panel-body">
             {!! $pokemons->render() !!}
-        </div>
-        <div class="list-group">
-            @foreach($pokemons as $pokemon)
-                <div class="list-group-item" id="pokemon-{{ $pokemon->id }}">
-                    <div class="media">
-                        <div class="media-left">
-                            <img class="media-object" src="{{ $pokemon->avatar }}" alt="{{ $pokemon->display_name }}">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">#{{ $pokemon->id }} {{ $pokemon->display_name }}</h4>
-                            <div>
-                                <strong>{{ trans('messages.types') }}</strong>
-                                {{ implode(', ', $pokemon->types->pluck('display_name')->toArray()) }}
+
+            <div class="row">
+                @foreach($pokemons as $pokemon)
+                    <div class="col-lg-4 col-md-6 margin-bottom-30">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object @if(!$pokemon->catched()) disabled @endif" src="{{ $pokemon->avatar }}" alt="{{ $pokemon->display_name }}">
                             </div>
-                            <ul class="list-inline margin-bottom-0">
-                                <li><strong>HP</strong> {{ $pokemon->health }}</li>
-                                <li><strong>ATK</strong> {{ $pokemon->attack }}</li>
-                                <li><strong>DEF</strong> {{ $pokemon->defense }}</li>
-                                <li><strong>SPD</strong> {{ $pokemon->speed }}</li>
-                                <li><strong>EXP</strong> {{ $pokemon->experience }}</li>
-                            </ul>
-                            <div>
-                                <strong>{{ trans('messages.moves') }}</strong>
-                                {{ $pokemon->moves->count() }}
+                            <div class="media-body">
+                                <div class="clearfix">
+                                    <h4 class="media-heading pull-left">#{{ $pokemon->id }} {{ $pokemon->display_name }}</h4>
+                                    <div class="pull-right">@if($pokemon->catched()) <i class="icon wh-pokemon"></i> @endif</div>
+                                </div>
+                                <div>
+                                    <strong>{{ trans('messages.types') }}</strong>
+                                    {{ implode(', ', $pokemon->types->pluck('display_name')->toArray()) }}
+                                </div>
+                                <ul class="list-inline margin-bottom-0">
+                                    <li><strong>HP</strong> {{ $pokemon->health }}</li>
+                                    <li><strong>ATK</strong> {{ $pokemon->attack }}</li>
+                                    <li><strong>DEF</strong> {{ $pokemon->defense }}</li>
+                                    <li><strong>SPD</strong> {{ $pokemon->speed }}</li>
+                                    <li><strong>EXP</strong> {{ $pokemon->experience }}</li>
+                                </ul>
+                                <div>
+                                    <strong>{{ trans('messages.moves') }}</strong>
+                                    {{ $pokemon->moves->count() }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="panel-footer">
+                @endforeach
+            </div>
+
             {!! $pokemons->render() !!}
         </div>
     </article>
