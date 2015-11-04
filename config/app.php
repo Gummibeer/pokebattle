@@ -152,6 +152,7 @@ return [
         Maknz\Slack\SlackServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Fenos\Notifynder\NotifynderServiceProvider::class,
 
     ],
 
@@ -206,6 +207,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Form' => Collective\Html\FormFacade::class,
+        'Notifynder' => Fenos\Notifynder\Facades\Notifynder::class,
 
     ],
 
