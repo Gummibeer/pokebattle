@@ -16,6 +16,7 @@ return [
     'active_pokemon' => 'aktives Pokémon',
     'pokemons_per_type' => 'Pokémons pro Typ',
     'pokemon_of_the_day' => 'Pokémon des Tages',
+    'fights_per_day' => 'Kämpfe pro Tag',
     'arena_weather' => 'Arena-Wetter',
     'battlehistories' => 'Arena-Verlauf',
 
