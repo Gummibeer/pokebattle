@@ -102,11 +102,7 @@ if (!function_exists('getSpd')) {
 if (!function_exists('calcDmg')) {
     function calcDmg(\App\User $attacker, \App\Move $move, \App\User $defender)
     {
-        return round(
-            ((2 * (getCurLvl($attacker) + 10)) * (getAtk($attacker) / getDef($defender)) + 2) *
-            ($move->power / 100) *
-            (1 + (0.5 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender))))
-            , 1);
+        return round(((2 * (getCurLvl($attacker) + 10)) * (getAtk($attacker) / getDef($defender)) + 2) * ($move->power / 100) * (1 + (0.5 * (getWeatherEffectiveness($attacker->pokemon->types->pluck('name')->toArray()) + $attacker->getEffectivenessAgainst($defender)))));
     }
 }
 
