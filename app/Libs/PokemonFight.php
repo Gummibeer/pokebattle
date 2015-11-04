@@ -103,7 +103,7 @@ class PokemonFight
             'is_attacker' => $attacker,
             'trainer_id' => $trainer->id,
             'pokemon_id' => $trainer->pokemon->id,
-            'moves' => $trainer->pokemon->moves,
+            'moves' => $trainer->pokemon->moves()->where('power', '<=', (getCurLvl($trainer) + 30))->get(),
             'health' => getHealth($trainer),
         ];
     }
