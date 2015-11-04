@@ -12,6 +12,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('facebook')->nullable();
+            $table->string('github')->nullable();
+            $table->string('slack')->nullable();
             $table->integer('experience')->unsigned();
             $table->integer('wins')->unsigned();
             $table->integer('looses')->unsigned();

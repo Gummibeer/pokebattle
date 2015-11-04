@@ -20,11 +20,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email',
         'password',
         'bot',
+        'facebook',
+        'github',
+        'slack',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'facebook',
+        'github',
+        'slack',
     ];
 
     protected $casts = [
@@ -141,6 +147,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return 'https://gravatar.com/avatar/' . md5($this->email) . '?d=mm&s=' . $size;
     }
 
+    public function saveOauthId($provider, $id)
+    {
+        $this->$provider = $id;
+        $this->save();
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function getEmailAttribute($value)
+    {
+        return strtolower($value);
+    }
+
     public function scopeBot($query)
     {
         return $query->where('bot', true);
@@ -149,5 +171,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function scopePlayer($query)
     {
         return $query->where('bot', false);
+    }
+
+    public function scopeFacebook($query, $id)
+    {
+        return $query->where('facebook', $id);
+    }
+
+    public function scopeGithub($query, $id)
+    {
+        return $query->where('github', $id);
+    }
+
+    public function scopeSlack($query, $id)
+    {
+        return $query->where('slack', $id);
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        return $query->where('email', $email);
     }
 }

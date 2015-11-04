@@ -35,4 +35,24 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID', ''),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET', ''),
+        'redirect' => env('APP_URL', '').'/auth/facebookcallback',
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID', ''),
+        'client_secret' => env('GITHUB_CLIENT_SECRET', ''),
+        'redirect' => env('APP_URL', '').'/auth/githubcallback',
+    ],
+
+    'slack' => [
+        'client_id' => env('SLACK_CLIENT_ID', ''),
+        'client_secret' => env('SLACK_CLIENT_SECRET', ''),
+        'token' => env('SLACK_TOKEN', ''),
+        'team' => env('SLACK_TEAM', ''),
+        'redirect' => env('APP_URL', '').'/auth/slackcallback',
+    ],
+
 ];
