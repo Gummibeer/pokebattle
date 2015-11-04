@@ -70,7 +70,7 @@ if (!function_exists('getHealth')) {
     function getHealth(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return ceil(((2 * $user->pokemon->health) * getCurLvl($user) / 100) + getCurLvl($user) + 30);
+        return ceil(((2 * ($user->pokemon->health - $user->bot)) * getCurLvl($user) / 100) + getCurLvl($user) + 30);
     }
 }
 
@@ -78,7 +78,7 @@ if (!function_exists('getAtk')) {
     function getAtk(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->attack) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * ($user->pokemon->attack - $user->bot)) * getCurLvl($user) / 100) + 5);
     }
 }
 
