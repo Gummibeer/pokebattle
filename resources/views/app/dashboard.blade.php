@@ -5,6 +5,9 @@
         <div class="col-md-3 col-xs-12 masonry-item masonry-sizer">
             <div class="widget">
                 <div class="widget-head">
+                    <div class="tools">
+                        <a href="{{ url('app/dashboard/fight') }}"><span class="icon wh-squareplay"></span></a>
+                    </div>
                     <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
                 </div>
                 <div class="media">
