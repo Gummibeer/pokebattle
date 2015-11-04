@@ -74,12 +74,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getKdRateAttribute()
     {
-        return round($this->kills / $this->deaths, 1);
+        return round($this->kills / ($this->deaths ?: 1), 1);
     }
 
     public function getWlRateAttribute()
     {
-        return round($this->wins / $this->looses, 1);
+        return round($this->wins / ($this->looses ?: 1), 1);
     }
 
     public function getEffectivenessAgainst($user)
