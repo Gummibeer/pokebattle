@@ -13,7 +13,6 @@ class DashboardController extends Controller
     {
         return view('app.dashboard')->with([
             'types' => Type::all(),
-            'battlehistories' => Battlehistory::orderBy('created_at', 'desc')->limit(5)->get(),
         ]);
     }
 }

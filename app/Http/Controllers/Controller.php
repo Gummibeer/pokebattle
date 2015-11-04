@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Battlehistory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,5 +14,6 @@ abstract class Controller extends BaseController
     public function __construct()
     {
         view()->share('battlemessages', \Auth::User()->battlemessages()->orderBy('created_at', 'desc')->limit(25)->get());
+        view()->share('battlehistories', Battlehistory::orderBy('created_at', 'desc')->limit(5)->get());
     }
 }

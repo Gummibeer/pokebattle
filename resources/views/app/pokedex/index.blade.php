@@ -7,7 +7,7 @@
         </header>
         <div class="list-group">
             @foreach($pokemons as $pokemon)
-                <div class="list-group-item">
+                <div class="list-group-item" id="pokemon-{{ $pokemon->id }}">
                     <div class="media">
                         <div class="media-left">
                             <img class="media-object" src="{{ $pokemon->avatar }}" alt="{{ $pokemon->display_name }}">

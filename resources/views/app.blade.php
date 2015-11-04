@@ -2,7 +2,7 @@
 
 @section('pre-content')
     @include('partials.navbar')
-    @include('partials.sidebar')
+    @include('partials.menubar')
 @endsection
 
 @section('layout')
@@ -10,5 +10,5 @@
 @endsection
 
 @section('post-content')
-    @include('partials.history')
+    @include('partials.sidebar')
 @endsection
