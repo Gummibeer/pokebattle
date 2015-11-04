@@ -53,7 +53,7 @@ class AuthController extends Controller
     public function getRegister()
     {
         return view('auth.register')->with([
-            'startPokemons' => Pokemon::starter()->lists('name', 'id'),
+            'startPokemons' => Pokemon::starter()->get()->keyBy('id')->pluck('display_name'),
         ]);
     }
 
