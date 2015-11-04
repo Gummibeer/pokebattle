@@ -16,18 +16,12 @@ Route::controller('auth', 'Auth\AuthController');
 Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], function () {
     Route::controller('dashboard', 'DashboardController');
     Route::controller('pokedex', 'PokedexController');
+
+    Route::controller('notification', 'NotificationController');
 });
 
 // ALIASES
-Route::get('auth', function () {
-    return redirect('auth/login');
-});
-Route::get('/', function () {
-    return redirect('app/dashboard');
-});
-Route::get('home', function () {
-    return redirect('app/dashboard');
-});
-Route::get('app', function () {
-    return redirect('app/dashboard');
-});
+Route::get('/', function() { return redirect()->to('app/dashboard'); });
+Route::get('auth', function() { return redirect()->to('auth/login'); });
+Route::get('app', function() { return redirect()->to('app/dashboard'); });
+Route::get('home', function() { return redirect()->to('app/dashboard'); });
