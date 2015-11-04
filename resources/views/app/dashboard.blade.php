@@ -44,10 +44,10 @@
                     <h3 class="panel-title">{{ trans('messages.trainer_stats') }}</h3>
                 </div>
                 <ul class="list-inline margin-bottom-0">
-                    <li><strong>K/D</strong> {{ \Auth::User()->kd_rate }}</li>
-                    <li><strong>W/L</strong> {{ \Auth::User()->wl_rate }}</li>
-                    <li><i class="icon wh-trophy"></i> {{ \Auth::User()->wins }}</li>
-                    <li><i class="icon wh-pokemon"></i> {{ \Auth::User()->pokemons()->count() }}</li>
+                    <li><i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.catched_pokemons') }}"></i> {{ \Auth::User()->pokemons()->count() }}</li>
+                    <li><i class="icon wh-brain" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.trainer_experience') }}"></i> {{ \Auth::User()->experience }}</li>
+                    <li><i class="icon wh-trophy" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.wins') }}"></i> {{ \Auth::User()->wins }}</li>
+                    <li><i class="icon wh-skull" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.kills') }}"></i> {{ \Auth::User()->kills }}</li>
                 </ul>
             </div>
         </div>

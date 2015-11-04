@@ -45,4 +45,8 @@ return [
     'moves' => 'Fähigkeiten',
 
     'rounds' => 'Runden',
+    'catched_pokemons' => 'gefangene Pokémons',
+    'trainer_experience' => 'Trainer Erfahrung',
+    'wins' => 'Siege',
+    'kills' => 'Tötungen',
 ];
