@@ -137,7 +137,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $this->pokemons()->sync([
             $this->pokemon->id => [
-                'experience' => ceil($this->pokemon->pivot->experience * 0.25),
+                'experience' => ceil($this->pokemon->pivot->experience * 0.33),
             ]
         ], false);
     }
