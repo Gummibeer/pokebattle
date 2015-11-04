@@ -23,6 +23,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'facebook',
         'github',
         'slack',
+        'wins',
+        'looses',
+        'kills',
+        'deaths',
     ];
 
     protected $hidden = [
@@ -43,6 +47,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'bot' => 'bool',
     ];
 
+    protected $appends = [
+        'kd_rate',
+        'wl_rate'
+    ];
+
     public function battlemessages()
     {
         return $this->hasMany(Battlemessage::class, 'user_id', 'id');
@@ -61,6 +70,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getPokemonAttribute()
     {
         return $this->pokemon()->first();
+    }
+
+    public function getKdRateAttribute()
+    {
+        return round($this->kills / $this->deaths, 1);
+    }
+
+    public function getWlRateAttribute()
+    {
+        return round($this->wins / $this->looses, 1);
     }
 
     public function getEffectivenessAgainst($user)
@@ -90,7 +109,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $this->increment('kills');
         }
         if ($this->kills % 10 == 0) {
-            $this->increment('experience');
+            $this->increment('experience', floor(pow(getCurLvl($this), 0.5)));
         }
 
         Battlemessage::create([

@@ -18,6 +18,7 @@ return [
     'pokemon_of_the_day' => 'Pokémon des Tages',
     'fights_per_day' => 'Kämpfe pro Tag',
     'arena_weather' => 'Arena-Wetter',
+    'trainer_stats' => 'Trainer-Werte',
     'battlehistories' => 'Arena-Verlauf',
 
     'moon' => [

@@ -38,6 +38,20 @@
             </div>
         </div>
 
+        <div class="col-md-3 col-xs-12 masonry-item masonry-sizer">
+            <div class="widget">
+                <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.trainer_stats') }}</h3>
+                </div>
+                <ul class="list-inline margin-bottom-0">
+                    <li><strong>K/D</strong> {{ \Auth::User()->kd_rate }}</li>
+                    <li><strong>W/L</strong> {{ \Auth::User()->wl_rate }}</li>
+                    <li><i class="icon wh-trophy"></i> {{ \Auth::User()->wins }}</li>
+                    <li><i class="icon wh-pokemon"></i> {{ \Auth::User()->pokemons()->count() }}</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
