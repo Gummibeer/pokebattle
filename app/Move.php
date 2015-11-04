@@ -30,7 +30,7 @@ class Move extends Model
 
     public function getDisplayNameAttribute()
     {
-        return trans('moves.' . $this->name);
+        return transd('moves.' . $this->name, $this->name);
     }
 
     public function scopeName($query, $name)

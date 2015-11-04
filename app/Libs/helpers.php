@@ -137,3 +137,15 @@ if (!function_exists('getWeatherByDate')) {
         });
     }
 }
+
+// HELPERS
+if (!function_exists('transd')) {
+    function transd($key, $default = null)
+    {
+        if(Lang::has($key)) {
+            return Lang::trans($key);
+        } else {
+            return $default;
+        }
+    }
+}

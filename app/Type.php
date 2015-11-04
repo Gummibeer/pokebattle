@@ -58,7 +58,7 @@ class Type extends Model
 
     public function getDisplayNameAttribute()
     {
-        return trans('types.' . $this->name);
+        return transd('types.' . $this->name, $this->name);
     }
 
     public function scopeName($query, $name)

@@ -70,7 +70,7 @@ class Pokemon extends Model
 
     public function getDisplayNameAttribute()
     {
-        return trans('pokemons.' . $this->name);
+        return transd('pokemons.' . $this->name, $this->name);
     }
 
     public function scopeName($query, $name)
