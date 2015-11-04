@@ -32,9 +32,22 @@
                                     <li><strong>EXP</strong> {{ $pokemon->experience }}</li>
                                 </ul>
                                 <div>
-                                    <strong>{{ trans('messages.moves') }}</strong>
-                                    {{ $pokemon->moves->count() }}
+                                    <p>
+                                        <strong>{{ trans('messages.moves') }}</strong>
+                                        {{ $pokemon->moves->count() }}
+                                        <a data-toggle="collapse" href="#moves-{{ $pokemon->id }}"><i class="icon wh-list"></i></a>
+                                    </p>
+                                    <div class="collapse" id="moves-{{ $pokemon->id }}">
+                                        <div class="well">
+                                            <ul class="list-inline margin-bottom-0">
+                                                @foreach($pokemon->moves()->orderBy('power')->get() as $move)
+                                                    <li>{{ $move->display_name }} ({{ $move->power }})</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
