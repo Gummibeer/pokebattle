@@ -86,7 +86,7 @@ if (!function_exists('getDef')) {
     function getDef(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->defense) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * $user->pokemon->defense - $user->bot) * getCurLvl($user) / 100) + 5);
     }
 }
 
@@ -94,7 +94,7 @@ if (!function_exists('getSpd')) {
     function getSpd(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->speed) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * $user->pokemon->speed - $user->bot) * getCurLvl($user) / 100) + 5);
     }
 }
 
