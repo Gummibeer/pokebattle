@@ -19,6 +19,7 @@ return [
     'fights_per_day' => 'Kämpfe pro Tag',
     'arena_weather' => 'Arena-Wetter',
     'trainer_stats' => 'Trainer-Werte',
+    'trainer_highscore' => 'Trainer-Highscore',
     'battlehistories' => 'Arena-Verlauf',
 
     'moon' => [
@@ -49,4 +50,5 @@ return [
     'trainer_experience' => 'Trainer Erfahrung',
     'wins' => 'Siege',
     'kills' => 'Tötungen',
+    'fights' => 'Kämpfe',
 ];

@@ -49,6 +49,7 @@
                 <ul class="list-inline margin-bottom-0">
                     <li><i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.catched_pokemons') }}"></i> {{ \Auth::User()->pokemons()->count() }}</li>
                     <li><i class="icon wh-brain" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.trainer_experience') }}"></i> {{ \Auth::User()->experience }}</li>
+                    <li><i class="icon wh-repeat" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.fights') }}"></i> {{ \Auth::User()->wins + \Auth::User()->looses }}</li>
                     <li><i class="icon wh-trophy" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.wins') }}"></i> {{ \Auth::User()->wins }}</li>
                     <li><i class="icon wh-skull" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.kills') }}"></i> {{ \Auth::User()->kills }}</li>
                 </ul>
@@ -139,10 +140,14 @@
         <div class="col-md-3 col-xs-12 masonry-item">
             <div class="widget">
                 <div class="widget-head">
-                    <h3 class="panel-title">{{ trans('messages.fights_per_day') }}</h3>
+                    <h3 class="panel-title">{{ trans('messages.trainer_highscore') }}</h3>
                 </div>
                 @foreach($highscores as $highscore)
-                    <p>{{ $highscore->name }} - LvL {{ $highscore->level }}</p>
+                    <p>
+                        <strong>{{ $highscore->name }}</strong>
+                        <i class="icon wh-pokemon"></i> {{ $highscore->pokemon->display_name }}
+                        LvL {{ $highscore->level }}
+                    </p>
                 @endforeach
             </div>
         </div>
