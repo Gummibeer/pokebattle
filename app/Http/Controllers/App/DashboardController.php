@@ -22,10 +22,4 @@ class DashboardController extends Controller
             'highscores' => User::player()->get()->sortByDesc('level'),
         ]);
     }
-    public function getFight()
-    {
-        $fight = new PokemonFight(\Auth::User(), User::where('id', '<>', \Auth::User()->id)->get()->random());
-        $fight->run();
-        return back();
-    }
 }
