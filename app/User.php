@@ -49,7 +49,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected $appends = [
         'kd_rate',
-        'wl_rate'
+        'wl_rate',
+        'level',
     ];
 
     public function battlemessages()
@@ -80,6 +81,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getWlRateAttribute()
     {
         return round($this->wins / ($this->looses ?: 1), 1);
+    }
+
+    public function getLevelAttribute()
+    {
+        return getCurLvl($this);
     }
 
     public function getEffectivenessAgainst($user)

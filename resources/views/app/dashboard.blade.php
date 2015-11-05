@@ -135,6 +135,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 col-xs-12 masonry-item">
+            <div class="widget">
+                <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.fights_per_day') }}</h3>
+                </div>
+                @foreach($highscores as $highscore)
+                    <p>{{ $highscore->name }} - LvL {{ $highscore->level }}</p>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection
 
