@@ -10,9 +10,42 @@ use Carbon\Carbon;
 
 class FightController extends Controller
 {
+    protected $trainers = [
+        'Ethan',
+        'Brendan',
+        'Lucas',
+        'Hilbert',
+        'Nate',
+        'Calem',
+        'Kris',
+        'May',
+        'Leaf',
+        'Dawn',
+        'Lyra',
+        'Hilda',
+        'Rosa',
+        'Serena',
+        'Wes',
+        'Michael',
+        'Mark',
+        'Mint',
+        'Lunick',
+        'Kellyn',
+        'Ben',
+        'Solana',
+        'Kate',
+        'Summer',
+    ];
+
     public function getIndex()
     {
-        $fight = new PokemonFight(\Auth::User(), User::where('id', '<>', \Auth::User()->id)->get()->random());
+        $bot = new User([
+            'name' => collect($this->trainers)->random() . ' [BOT]',
+            'experience' => getNeededExpByLevel(getCurLvl(\Auth::User()) - 1, \Auth::User()) - rand(0, 200),
+            'bot' => true,
+        ]);
+        $bot->pokemon = \App\Pokemon::starter()->get()->random();
+        $fight = new PokemonFight(\Auth::User(), $bot);
         $fight->run();
         return back();
     }

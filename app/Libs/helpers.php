@@ -4,7 +4,7 @@ if (!function_exists('getCurExp')) {
     function getCurExp(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return $user->experience + $user->pokemon->pivot->experience;
+        return $user->experience + object_get($user, 'pokemon.pivot.experience', 0);
     }
 }
 
@@ -70,7 +70,7 @@ if (!function_exists('getHealth')) {
     function getHealth(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return ceil(((2 * ($user->pokemon->health - $user->bot)) * getCurLvl($user) / 100) + getCurLvl($user) + 30);
+        return ceil(((2 * ($user->pokemon->health - $user->bot)) * getCurLvl($user) / 100) + getCurLvl($user) + 30 - $user->bot);
     }
 }
 
@@ -78,7 +78,7 @@ if (!function_exists('getAtk')) {
     function getAtk(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * ($user->pokemon->attack - $user->bot)) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * ($user->pokemon->attack - $user->bot)) * getCurLvl($user) / 100) + 5 - $user->bot);
     }
 }
 
@@ -86,7 +86,7 @@ if (!function_exists('getDef')) {
     function getDef(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->defense - $user->bot) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * $user->pokemon->defense - $user->bot) * getCurLvl($user) / 100) + 5 - $user->bot);
     }
 }
 
@@ -94,7 +94,7 @@ if (!function_exists('getSpd')) {
     function getSpd(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->speed - $user->bot) * getCurLvl($user) / 100) + 5);
+        return floor(((2 * $user->pokemon->speed - $user->bot) * getCurLvl($user) / 100) + 5 - $user->bot);
     }
 }
 

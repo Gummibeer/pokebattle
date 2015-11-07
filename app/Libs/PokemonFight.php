@@ -42,26 +42,30 @@ class PokemonFight
         $damage = calcDmg($attackerTrainer, $move, $defenderTrainer);
         $defender['health'] -= $damage;
         $this->pokemons->push($defender);
-        Battlemessage::create([
-            'user_id' => $attackerTrainer->id,
-            'message_key' => 'move',
-            'data' => [
-                'attacker' => $attackerTrainer->pokemon->id,
-                'defender' => $defenderTrainer->pokemon->id,
-                'move' => $move->id,
-                'damage' => $damage,
-            ],
-        ]);
-        Battlemessage::create([
-            'user_id' => $defenderTrainer->id,
-            'message_key' => 'move',
-            'data' => [
-                'attacker' => $attackerTrainer->pokemon->id,
-                'defender' => $defenderTrainer->pokemon->id,
-                'move' => $move->id,
-                'damage' => $damage,
-            ],
-        ]);
+        if(!$attackerTrainer->bot) {
+            Battlemessage::create([
+                'user_id' => $attackerTrainer->id,
+                'message_key' => 'move',
+                'data' => [
+                    'attacker' => $attackerTrainer->pokemon->id,
+                    'defender' => $defenderTrainer->pokemon->id,
+                    'move' => $move->id,
+                    'damage' => $damage,
+                ],
+            ]);
+        }
+        if(!$defenderTrainer->bot) {
+            Battlemessage::create([
+                'user_id' => $defenderTrainer->id,
+                'message_key' => 'move',
+                'data' => [
+                    'attacker' => $attackerTrainer->pokemon->id,
+                    'defender' => $defenderTrainer->pokemon->id,
+                    'move' => $move->id,
+                    'damage' => $damage,
+                ],
+            ]);
+        }
     }
 
     private function end()

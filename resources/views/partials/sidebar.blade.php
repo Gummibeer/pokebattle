@@ -14,9 +14,9 @@
                         <div class="content padding-15">
                             @foreach($battlehistories as $battlehistory)
                                 <p>
-                                    <strong class="@if($battlehistory->attacker_win) text-primary @endif" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->attackerPokemon->display_name }}">{{ $battlehistory->attacker->name }}</strong>
+                                    <strong class="@if($battlehistory->attacker_win) text-primary @endif" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->attackerPokemon->display_name }}">{{ object_get($battlehistory->attacker, 'name', 'BOT') }}</strong>
                                     vs
-                                    <strong class="@if(!$battlehistory->attacker_win) text-primary @endif" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->defenderPokemon->display_name }}">{{ $battlehistory->defender->name }}</strong>
+                                    <strong class="@if(!$battlehistory->attacker_win) text-primary @endif" data-toggle="tooltip" data-placement="bottom" data-title="{{ $battlehistory->defenderPokemon->display_name }}">{{ object_get($battlehistory->defender, 'name', 'BOT') }}</strong>
                                 </p>
                             @endforeach
                         </div>

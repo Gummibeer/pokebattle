@@ -19,6 +19,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'name',
         'email',
         'password',
+        'experience',
         'bot',
         'facebook',
         'github',
@@ -70,7 +71,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getPokemonAttribute()
     {
-        return $this->pokemon()->first();
+        if (isset($this->attributes['pokemon'])) {
+            return $this->attributes['pokemon'];
+        } else {
+            return $this->pokemon()->first();
+        }
+    }
+
+    public function setPokemonAttribute(Pokemon $pokemon)
+    {
+        return $this->attributes['pokemon'] = $pokemon;
     }
 
     public function getKdRateAttribute()
@@ -109,39 +119,43 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function won($experience, $isAttacker)
     {
-        $this->addExperience($experience);
-        $this->increment('wins');
-        if ($isAttacker) {
-            $this->increment('kills');
-        }
-        if ($this->kills > 0 && $this->kills % 10 == 0 && !$this->bot) {
-            $this->increment('experience', floor(pow(getCurLvl($this), 0.5)));
-        }
+        if (!$this->bot) {
+            $this->addExperience($experience);
+            $this->increment('wins');
+            if ($isAttacker) {
+                $this->increment('kills');
+            }
+            if ($this->kills > 0 && $this->kills % 10 == 0 && !$this->bot) {
+                $this->increment('experience', floor(pow(getCurLvl($this), 0.5)));
+            }
 
-        Battlemessage::create([
-            'user_id' => $this->id,
-            'message_key' => 'win',
-            'data' => [
-                'winner' => $this->pokemon->id,
-            ],
-        ]);
+            Battlemessage::create([
+                'user_id' => $this->id,
+                'message_key' => 'win',
+                'data' => [
+                    'winner' => $this->pokemon->id,
+                ],
+            ]);
+        }
     }
 
     public function loose($isAttacker)
     {
-        $this->increment('looses');
-        if ($isAttacker) {
-            $this->resetExperience();
-            $this->increment('deaths');
-        }
+        if (!$this->bot) {
+            $this->increment('looses');
+            if ($isAttacker) {
+                $this->resetExperience();
+                $this->increment('deaths');
+            }
 
-        Battlemessage::create([
-            'user_id' => $this->id,
-            'message_key' => 'loose',
-            'data' => [
-                'looser' => $this->pokemon->id,
-            ],
-        ]);
+            Battlemessage::create([
+                'user_id' => $this->id,
+                'message_key' => 'loose',
+                'data' => [
+                    'looser' => $this->pokemon->id,
+                ],
+            ]);
+        }
     }
 
     public function addExperience($amount)

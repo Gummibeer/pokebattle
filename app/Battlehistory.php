@@ -47,4 +47,9 @@ class Battlehistory extends Model
     {
         return $this->hasOne(Pokemon::class, 'id', 'defender_pokemon_id');
     }
+
+    public function scopeUser($query, $userId)
+    {
+        return $query->where('attacker_user_id', $userId)->orWhere('defender_user_id', $userId);
+    }
 }

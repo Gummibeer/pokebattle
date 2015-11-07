@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.1",
         "solaris/php-moon-phase": "v1.1.1",
         "michelf/php-markdown": "1.5.0",
-        "fenos/notifynder": "3.1.*"
+        "fenos/notifynder": "3.1.*",
+        "doctrine/dbal": "2.6.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
