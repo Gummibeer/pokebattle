@@ -44,7 +44,7 @@ if (!function_exists('getNeededExpByLevel')) {
     function getNeededExpByLevel($level, \App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor($user->pokemon->experience * pow($level, 1.1));
+        return floor($user->pokemon->experience * pow($level, 1.2));
     }
 }
 
@@ -53,7 +53,7 @@ if (!function_exists('getCurLvl')) {
     function getCurLvl(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return max(ceil(pow(getCurExp($user) / $user->pokemon->experience, 1 / 1.1)), 1);
+        return max(ceil(pow(getCurExp($user) / $user->pokemon->experience, 1 / 1.2)), 1);
     }
 }
 
