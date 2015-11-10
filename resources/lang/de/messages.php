@@ -25,6 +25,7 @@ return [
     'moon' => [
         'waning-gibbous' => 'drittes Viertel',
         'third-quarter' => 'drittes Viertel',
+        'new-moon' => 'Neumond',
     ],
     'weather' => [
         'cloud' => 'Wolken',
@@ -51,4 +52,6 @@ return [
     'wins' => 'Siege',
     'kills' => 'Tötungen',
     'fights' => 'Kämpfe',
+    'battle_timeout' => 'noch :seconds Sekunden Kampfpause',
+    'fight_ready' => 'dein Pokémon ist kampfbereit',
 ];

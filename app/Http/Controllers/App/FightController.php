@@ -39,14 +39,18 @@ class FightController extends Controller
 
     public function getIndex()
     {
-        $bot = new User([
-            'name' => collect($this->trainers)->random() . ' [BOT]',
-            'experience' => getNeededExpByLevel(getCurLvl(\Auth::User()) - 1, \Auth::User()) - rand(0, 200),
-            'bot' => true,
-        ]);
-        $bot->pokemon = \App\Pokemon::starter()->get()->random();
-        $fight = new PokemonFight(\Auth::User(), $bot);
-        $fight->run();
+        if(\Auth::User()->fightable_at->diffInSeconds(Carbon::now(), false) >= 0) {
+            $bot = new User([
+                'name' => collect($this->trainers)->random() . ' [BOT]',
+                'experience' => getCurExp(\Auth::User()) - rand(0, 200),
+                'bot' => true,
+            ]);
+            $bot->pokemon = \App\Pokemon::starter()->get()->random();
+            $fight = new PokemonFight(\Auth::User(), $bot);
+            $fight->run();
+            \Auth::User()->fightable_at = Carbon::now()->addSeconds(30);
+            \Auth::User()->save();
+        }
         return back();
     }
 }

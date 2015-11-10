@@ -28,6 +28,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'looses',
         'kills',
         'deaths',
+        'fightable_at',
     ];
 
     protected $hidden = [
@@ -46,6 +47,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'kills' => 'int',
         'deaths' => 'int',
         'bot' => 'bool',
+    ];
+
+    protected $dates = [
+        'fightable_at',
     ];
 
     protected $appends = [
@@ -161,7 +166,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function addExperience($amount)
     {
         $beforeLevel = getCurLvl($this);
-        $amount = $this->bot ? 1 : $amount;
+        $amount = $this->bot ? 1 : max($amount, 1);
         $this->pokemons()->sync([
             $this->pokemon->id => [
                 'experience' => ceil($this->pokemon->pivot->experience + $amount),
@@ -175,7 +180,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function resetExperience()
     {
-        $expLoss = min(ceil($this->pokemon->pivot->experience * 0.25), getCurLvl($this) * 2);
+        $expLoss = min(floor($this->pokemon->pivot->experience * 0.1), getCurLvl($this) / 2, 10);
         $minExpToHoldLevel = getLastExp($this) - $this->experience + 1;
         $newExp = max($minExpToHoldLevel, $this->pokemon->pivot->experience - $expLoss);
         $this->pokemons()->sync([

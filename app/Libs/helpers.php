@@ -70,7 +70,7 @@ if (!function_exists('getHealth')) {
     function getHealth(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return ceil(((2 * ($user->pokemon->health - $user->bot)) * getCurLvl($user) / 100) + getCurLvl($user) + 30 - $user->bot);
+        return ceil(((2 * ($user->pokemon->health - $user->bot)) * (getCurLvl($user) / 10)) + 30 - $user->bot);
     }
 }
 
