@@ -14,6 +14,12 @@
                     <span>{{ trans('menu.pokedex') }}</span>
                 </a>
             </li>
+            <li class="@if(Request::is('app/safaripark*')) active @endif">
+                <a href="#" class="text-center">
+                    <i class="icon wh-torigate"></i>
+                    <span>{{ trans('menu.safaripark') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

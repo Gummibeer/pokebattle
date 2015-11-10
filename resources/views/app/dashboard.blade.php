@@ -138,21 +138,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-3 col-xs-12 masonry-item">
-            <div class="widget">
-                <div class="widget-head">
-                    <h3 class="panel-title">{{ trans('messages.trainer_highscore') }}</h3>
-                </div>
-                @foreach($highscores as $highscore)
-                    <p>
-                        <strong>{{ $highscore->name }}</strong>
-                        <i class="icon wh-pokemon"></i> {{ $highscore->pokemon->display_name }}
-                        LvL {{ $highscore->level }}
-                    </p>
-                @endforeach
-            </div>
-        </div>
     </div>
 @endsection
 

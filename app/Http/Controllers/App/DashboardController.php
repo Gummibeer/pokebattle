@@ -19,7 +19,6 @@ class DashboardController extends Controller
             })->map(function ($item) {
                 return count($item);
             }),
-            'highscores' => User::player()->get()->sortByDesc('level'),
         ]);
     }
 }
