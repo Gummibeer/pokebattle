@@ -15,7 +15,6 @@ class CreateUserPokemonTable extends Migration
             $table->integer('experience')->unsigned();
             $table->boolean('active');
             $table->unique(['user_id', 'pokemon_id']);
-            $table->unique(['user_id', 'active']);
         });
     }
 

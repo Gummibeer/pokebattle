@@ -89,6 +89,15 @@ class PokemonFight
         $this->getTrainerByPokemon($looser)->loose($looser['is_attacker']);
     }
 
+    public function getWinner()
+    {
+        if($this->allAlive()) return false;
+
+        return $this->getTrainerByPokemon($this->pokemons->filter(function($pokemon) {
+            return $pokemon['health'] > 0;
+        })->first());
+    }
+
     public function allAlive()
     {
         return (bool)!$this->pokemons->contains(function ($key, $pokemon) {

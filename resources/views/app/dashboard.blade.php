@@ -9,6 +9,9 @@
                         <a href="{{ url('app/fight') }}" data-toggle="tooltip" data-placement="bottom" title="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) {{ trans('messages.battle_timeout', ['seconds' => \Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) ]) }} @else {{ trans('messages.fight_ready') }} @endif">
                             <span class="icon wh-squareplay"></span>
                         </a>
+                        <a href="{{ url('app/fight/catch') }}">
+                            <span class="icon wh-spiderweb"></span>
+                        </a>
                     </div>
                     <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
                 </div>
