@@ -5,15 +5,6 @@
         <div class="col-md-3 col-xs-12 masonry-item masonry-sizer">
             <div class="widget">
                 <div class="widget-head">
-                    <div class="tools">
-                        <span id="battle-timeout" data-finaldate="{{ \Auth::User()->fightable_at->format('Y-m-d H:i:s') }}"></span>
-                        <a href="{{ url('app/fight') }}" class="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) text-muted @endif">
-                            <span class="icon wh-squareplay"></span>
-                        </a>
-                        <a href="{{ url('app/fight/catch') }}" class="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) text-muted @endif">
-                            <span class="icon wh-spiderweb"></span>
-                        </a>
-                    </div>
                     <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
                 </div>
                 <div class="media">
@@ -41,6 +32,31 @@
                         <div>
                             <strong>{{ trans('messages.moves') }}</strong>
                             {{ \Auth::User()->pokemon->moves->count() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-xs-12 masonry-item masonry-sizer">
+            <div class="widget">
+                <div class="widget-head">
+                    <h3 class="panel-title">{{ trans('messages.actions') }}</h3>
+                </div>
+                <div>
+                    <p class="text-center font-size-40" id="battle-timeout" data-finaldate="{{ \Auth::User()->fightable_at->format('Y-m-d H:i:s') }}">00:00</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ url('app/fight') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
+                                <span class="btn-label"><i class="icon wh-brain"></i></span>
+                                {{ trans('messages.bot') }}
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url('app/fight/catch') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
+                                <span class="btn-label"><i class="icon wh-spiderweb"></i></span>
+                                {{ trans('messages.hunt') }}
+                            </a>
                         </div>
                     </div>
                 </div>

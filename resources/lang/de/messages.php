@@ -21,6 +21,7 @@ return [
     'trainer_stats' => 'Trainer-Werte',
     'trainer_highscore' => 'Trainer-Highscore',
     'battlehistories' => 'Arena-Verlauf',
+    'actions' => 'Aktionen',
 
     'moon' => [
         'waning-gibbous' => 'drittes Viertel',
@@ -55,4 +56,6 @@ return [
     'fights' => 'Kämpfe',
     'battle_timeout' => 'noch :seconds Sekunden Kampfpause',
     'fight_ready' => 'dein Pokémon ist kampfbereit',
+    'bot' => 'Bot',
+    'hunt' => 'Jagd',
 ];

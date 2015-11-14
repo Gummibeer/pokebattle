@@ -62,7 +62,7 @@ var App = (function () {
             $battleTimeout.countdown(finalDate.toDate(), function(event) {
                 jQuery(this).html(event.strftime('%M:%S'));
             }).on('finish.countdown', function() {
-                jQuery(this).parent().find('a').removeClass('text-muted');
+                jQuery(this).parent().find('a').removeClass('btn-muted').addClass('btn-primary');
             });
         }
 
