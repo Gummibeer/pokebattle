@@ -56,8 +56,19 @@ var App = (function () {
             }
         }
 
+        function battle_timeout() {
+            var $battleTimeout = jQuery('#battle-timeout');
+            var finalDate = moment.utc($battleTimeout.data('finaldate'));
+            $battleTimeout.countdown(finalDate.toDate(), function(event) {
+                jQuery(this).html(event.strftime('%M:%S'));
+            }).on('finish.countdown', function() {
+                jQuery(this).parent().find('a').removeClass('text-muted');
+            });
+        }
+
         type_radar();
         fights_line();
+        battle_timeout();
 
     };
 

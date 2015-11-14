@@ -32,6 +32,9 @@
 <script src="{{ asset('js/jquery.nanoscroller.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.masonry.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery.countdown.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/moment.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/moment-timezone.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/lib/chartjs/Chart.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/modules/masonry.js') }}" type="text/javascript"></script>

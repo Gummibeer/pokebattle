@@ -6,10 +6,11 @@
             <div class="widget">
                 <div class="widget-head">
                     <div class="tools">
-                        <a href="{{ url('app/fight') }}" data-toggle="tooltip" data-placement="bottom" title="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) {{ trans('messages.battle_timeout', ['seconds' => \Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) ]) }} @else {{ trans('messages.fight_ready') }} @endif">
+                        <span id="battle-timeout" data-finaldate="{{ \Auth::User()->fightable_at->format('Y-m-d H:i:s') }}"></span>
+                        <a href="{{ url('app/fight') }}" class="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) text-muted @endif">
                             <span class="icon wh-squareplay"></span>
                         </a>
-                        <a href="{{ url('app/fight/catch') }}">
+                        <a href="{{ url('app/fight/catch') }}" class="@if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) text-muted @endif">
                             <span class="icon wh-spiderweb"></span>
                         </a>
                     </div>

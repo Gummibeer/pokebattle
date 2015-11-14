@@ -49,7 +49,7 @@ class FightController extends Controller
             $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
             $fight = new PokemonFight(\Auth::User(), $bot);
             $fight->run();
-            \Auth::User()->fightable_at = Carbon::now()->addSeconds(30);
+            \Auth::User()->fightable_at = Carbon::now()->addMinute();
             \Auth::User()->save();
         }
         return back();
@@ -70,7 +70,7 @@ class FightController extends Controller
                 $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) + floor(rand(5, 10)), $bot);
                 $fight = new PokemonFight(\Auth::User(), $bot);
                 $fight->run();
-                \Auth::User()->fightable_at = Carbon::now()->addSeconds(90);
+                \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
                 \Auth::User()->save();
                 if (\Auth::User() == $fight->getWinner()) {
                     \Auth::User()->pokemons()->attach($bot->pokemon->id);
