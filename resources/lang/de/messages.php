@@ -26,6 +26,7 @@ return [
         'waning-gibbous' => 'drittes Viertel',
         'third-quarter' => 'drittes Viertel',
         'new-moon' => 'Neumond',
+        'waxing-crescent' => 'zunehmender Halbmond',
     ],
     'weather' => [
         'cloud' => 'Wolken',
