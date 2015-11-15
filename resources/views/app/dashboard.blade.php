@@ -7,6 +7,9 @@
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.active_pokemon') }}</h3>
                 </div>
+                @if(isset($messages) && $messages->has('pokemon'))
+                    {!! \Alert::info($messages->get('pokemon')) !!}
+                @endif
                 <div class="media">
                     <div class="media-left">
                         <img class="media-object" src="{{ \Auth::User()->pokemon->avatar }}" alt="{{ \Auth::User()->pokemon->display_name }}">
@@ -29,10 +32,19 @@
                             <li><strong>DEF</strong> {{ getDef() }}</li>
                             <li><strong>SPD</strong> {{ getSpd() }}</li>
                         </ul>
-                        <div>
+                        <div class="margin-bottom-15">
                             <strong>{{ trans('messages.moves') }}</strong>
                             {{ \Auth::User()->pokemon->moves->count() }}
                         </div>
+
+                        {!! Form::open(['url' => 'app/pokemon/change']) !!}
+                        <div class="input-group">
+                            {!! Form::select('pokemon_id', \Auth::User()->pokemons->keyBy('id')->map(function($pokemon){ return '#' . $pokemon->id . ' ' . $pokemon->display_name; })->toArray(), \Auth::User()->pokemon->id, ['class' => 'form-control']) !!}
+                            <span class="input-group-btn">
+                                {!! Form::button('speichern', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+                            </span>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -73,7 +85,7 @@
                 </div>
                 <ul class="list-inline margin-bottom-0">
                     <li><i class="icon wh-pokemon" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.catched_pokemons') }}"></i> {{ \Auth::User()->pokemons()->count() }}</li>
-                    <li><i class="icon wh-brain" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.trainer_experience') }}"></i> {{ \Auth::User()->experience }}</li>
+                    <li><i class="icon wh-podium-winner" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.trainer_experience') }}"></i> {{ \Auth::User()->experience }}</li>
                     <li><i class="icon wh-repeat" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.fights') }}"></i> {{ \Auth::User()->wins + \Auth::User()->looses }}</li>
                     <li><i class="icon wh-trophy" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.wins') }}"></i> {{ \Auth::User()->wins }}</li>
                     <li><i class="icon wh-skull" data-toggle="tooltip" data-placement="bottom" title="{{ trans('messages.kills') }}"></i> {{ \Auth::User()->kills }}</li>

@@ -78,7 +78,7 @@ class FightController extends Controller
                 $bot->pokemon = $pokemons->random();
                 $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) + floor(rand(5, 10)), $bot);
                 $fightChance = round(mt_rand(1, 10));
-                if($fightChance <= 4) {
+                if($fightChance <= 5) {
                     $fight = new PokemonFight(\Auth::User(), $bot);
                     $fight->run();
                     if (\Auth::User() == $fight->getWinner()) {

@@ -4,7 +4,7 @@ if (!function_exists('getCurExp')) {
     function getCurExp(\App\User $user = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return $user->experience + object_get($user, 'pokemon.pivot.experience', 0);
+        return object_get($user, 'pokemon.pivot.experience', 0);
     }
 }
 

@@ -17,6 +17,7 @@ Route::group(['prefix' => 'app', 'namespace' => 'App', 'middleware' => 'auth'], 
     Route::controller('dashboard', 'DashboardController');
     Route::controller('pokedex', 'PokedexController');
     Route::controller('fight', 'FightController');
+    Route::controller('pokemon', 'PokemonController');
 
     Route::controller('notification', 'NotificationController');
 });
