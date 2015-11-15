@@ -49,12 +49,13 @@ class FightController extends Controller
             $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
             $fight = new PokemonFight(\Auth::User(), $bot);
             $fight->run();
-            \Auth::User()->fightable_at = Carbon::now()->addMinute();
             \Auth::User()->save();
             if (\Auth::User() == $fight->getWinner()) {
+                \Auth::User()->fightable_at = Carbon::now()->addMinutes(2);
                 \Auth::User()->pokemons()->attach($bot->pokemon->id);
                 $this->messages->add('battle', trans('messages.fight_won', ['trainer' => $bot->name, 'pokemon' => $bot->pokemon->display_name]));
             } else {
+                \Auth::User()->fightable_at = Carbon::now()->addMinutes(4);
                 $this->messages->add('battle', trans('messages.fight_lost', ['trainer' => $bot->name, 'pokemon' => $bot->pokemon->display_name]));
             }
         } else {
@@ -80,23 +81,26 @@ class FightController extends Controller
                 if($fightChance <= 5) {
                     $fight = new PokemonFight(\Auth::User(), $bot);
                     $fight->run();
-                    \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
-                    \Auth::User()->save();
                     if (\Auth::User() == $fight->getWinner()) {
+                        \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
                         \Auth::User()->pokemons()->attach($bot->pokemon->id);
                         $this->messages->add('battle', trans('messages.catch_success', ['pokemon' => $bot->pokemon->display_name]));
                     } else {
+                        \Auth::User()->fightable_at = Carbon::now()->addMinutes(10);
                         $this->messages->add('battle', trans('messages.catch_lost', ['pokemon' => $bot->pokemon->display_name]));
                     }
                 } else {
+                    \Auth::User()->fightable_at = Carbon::now()->addMinutes(1);
                     $this->messages->add('battle', trans('messages.catch_escape', ['pokemon' => $bot->pokemon->display_name]));
                 }
             } else {
+                \Auth::User()->fightable_at = Carbon::now()->addSeconds(30);
                 $this->messages->add('battle', trans('messages.catch_no_found'));
             }
         } else {
             $this->messages->add('battle', trans('messages.battle_timeout'));
         }
+        \Auth::User()->save();
         return back()->with(['messages' => $this->messages]);
     }
 }
