@@ -54,8 +54,17 @@ return [
     'wins' => 'Siege',
     'kills' => 'Tötungen',
     'fights' => 'Kämpfe',
-    'battle_timeout' => 'noch :seconds Sekunden Kampfpause',
     'fight_ready' => 'dein Pokémon ist kampfbereit',
     'bot' => 'Bot',
     'hunt' => 'Jagd',
+
+    'battle_timeout' => 'Dein Pokémon ist noch zu erschöpft und kann noch nicht wieder kämpfen.',
+
+    'fight_won' => 'Du hast gegen ein :pokemon von :trainer gewonnen.',
+    'fight_lost' => 'Leider hast du gegen das :pokemon von :trainer verloren.',
+
+    'catch_success' => 'Du hast erfolgreich ein wildes :pokemon gefangen.',
+    'catch_no_found' => 'Leider hast du kein wildes Pokémon gefunden.',
+    'catch_escape' => 'Leider ist das wilde :pokemon geflohen.',
+    'catch_lost' => 'Leider hast du den Kampf gegen das wilde :pokemon verloren.',
 ];

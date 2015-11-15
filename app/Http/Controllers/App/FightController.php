@@ -51,8 +51,16 @@ class FightController extends Controller
             $fight->run();
             \Auth::User()->fightable_at = Carbon::now()->addMinute();
             \Auth::User()->save();
+            if (\Auth::User() == $fight->getWinner()) {
+                \Auth::User()->pokemons()->attach($bot->pokemon->id);
+                $this->messages->add('battle', trans('messages.fight_won', ['trainer' => $bot->name, 'pokemon' => $bot->pokemon->display_name]));
+            } else {
+                $this->messages->add('battle', trans('messages.fight_lost', ['trainer' => $bot->name, 'pokemon' => $bot->pokemon->display_name]));
+            }
+        } else {
+            $this->messages->add('battle', trans('messages.battle_timeout'));
         }
-        return back();
+        return back()->with(['messages' => $this->messages]);
     }
 
     public function getCatch()
@@ -68,15 +76,27 @@ class FightController extends Controller
             if($pokemons->count() > 0) {
                 $bot->pokemon = $pokemons->random();
                 $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) + floor(rand(5, 10)), $bot);
-                $fight = new PokemonFight(\Auth::User(), $bot);
-                $fight->run();
-                \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
-                \Auth::User()->save();
-                if (\Auth::User() == $fight->getWinner()) {
-                    \Auth::User()->pokemons()->attach($bot->pokemon->id);
+                $fightChance = round(mt_rand(1, 10));
+                if($fightChance <= 5) {
+                    $fight = new PokemonFight(\Auth::User(), $bot);
+                    $fight->run();
+                    \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
+                    \Auth::User()->save();
+                    if (\Auth::User() == $fight->getWinner()) {
+                        \Auth::User()->pokemons()->attach($bot->pokemon->id);
+                        $this->messages->add('battle', trans('messages.catch_success', ['pokemon' => $bot->pokemon->display_name]));
+                    } else {
+                        $this->messages->add('battle', trans('messages.catch_lost', ['pokemon' => $bot->pokemon->display_name]));
+                    }
+                } else {
+                    $this->messages->add('battle', trans('messages.catch_escape', ['pokemon' => $bot->pokemon->display_name]));
                 }
+            } else {
+                $this->messages->add('battle', trans('messages.catch_no_found'));
             }
+        } else {
+            $this->messages->add('battle', trans('messages.battle_timeout'));
         }
-        return back();
+        return back()->with(['messages' => $this->messages]);
     }
 }

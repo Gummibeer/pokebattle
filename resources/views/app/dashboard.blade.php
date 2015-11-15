@@ -43,6 +43,9 @@
                 <div class="widget-head">
                     <h3 class="panel-title">{{ trans('messages.actions') }}</h3>
                 </div>
+                @if(isset($messages) && $messages->has('battle'))
+                    {!! \Alert::info($messages->get('battle')) !!}
+                @endif
                 <div>
                     <p class="text-center font-size-40" id="battle-timeout" data-finaldate="{{ \Auth::User()->fightable_at->format('Y-m-d H:i:s') }}">00:00</p>
                     <div class="row">
