@@ -166,7 +166,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function addExperience($amount)
     {
         $beforeLevel = getCurLvl($this);
-        $amount = $this->bot ? 1 : max(1, min($amount, floor($this->level / 3)));
+        $amount = $this->bot ? 1 : max(5, $amount, floor($this->level / 10));
         $this->pokemons()->sync([
             $this->pokemon->id => [
                 'experience' => ceil($this->pokemon->pivot->experience + $amount),
