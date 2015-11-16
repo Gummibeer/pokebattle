@@ -15,23 +15,22 @@
 Route::get('/', function () {
     return redirect()->to('de/app/dashboard');
 });
-Route::get('auth', function () {
-    return redirect()->to('de/auth/login');
-});
 Route::get('app', function () {
+    return redirect()->to('de/app/dashboard');
+});
+Route::get('app/dashboard', function () {
     return redirect()->to('de/app/dashboard');
 });
 Route::get('home', function () {
     return redirect()->to('de/app/dashboard');
 });
 
+Route::controller('auth', 'Auth\AuthController');
+
 Route::group(['prefix' => '{locale?}', 'before' => 'localization'], function () {
     // ALIASES
     Route::get('/', function () {
         return redirect()->to(Route::input('locale') . '/app/dashboard');
-    });
-    Route::get('auth', function () {
-        return redirect()->to(Route::input('locale') . '/auth/login');
     });
     Route::get('app', function () {
         return redirect()->to(Route::input('locale') . '/app/dashboard');

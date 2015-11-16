@@ -21,5 +21,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('pokemonfight:run')->everyMinute();
+        $schedule->command('pokemonfight:run')->everyMinute();
+        $schedule->command('pokemonfight:run')->everyMinute();
+        $schedule->command('pokemonfight:run')->everyMinute();
+        $schedule->command('pokemonfight:run')->everyMinute();
     }
 }

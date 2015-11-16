@@ -180,14 +180,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function resetExperience()
     {
-        $expLoss = min(floor($this->pokemon->pivot->experience * 0.1), getCurLvl($this) / 2, 10);
-        $minExpToHoldLevel = getLastExp($this) - $this->experience + 1;
-        $newExp = max($minExpToHoldLevel, $this->pokemon->pivot->experience - $expLoss);
-        $this->pokemons()->sync([
-            $this->pokemon->id => [
-                'experience' => $newExp,
-            ]
-        ], false);
+        if($this->level > 100) {
+            $expLoss = min(floor($this->pokemon->pivot->experience * 0.1), getCurLvl($this) / 3, 10);
+            $minExpToHoldLevel = getLastExp($this) - $this->experience + 1;
+            $newExp = max($minExpToHoldLevel, $this->pokemon->pivot->experience - $expLoss);
+            $this->pokemons()->sync([
+                $this->pokemon->id => [
+                    'experience' => $newExp,
+                ]
+            ], false);
+        }
     }
 
     public function avatar($size = 64)
