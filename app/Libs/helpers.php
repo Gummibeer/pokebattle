@@ -1,100 +1,112 @@
 <?php
 // EXP
 if (!function_exists('getCurExp')) {
-    function getCurExp(\App\User $user = null)
+    function getCurExp(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return object_get($user, 'pokemon.pivot.experience', 0);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return object_get($pokemon, 'pivot.experience', 0);
     }
 }
 
 if (!function_exists('getRelativeCurExp')) {
-    function getRelativeCurExp(\App\User $user = null)
+    function getRelativeCurExp(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return getCurExp($user) - getLastExp($user);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return getCurExp($user, $pokemon) - getLastExp($user, $pokemon);
     }
 }
 
 if (!function_exists('getNeededExp')) {
-    function getNeededExp(\App\User $user = null)
+    function getNeededExp(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return getNeededExpByLevel(getCurLvl($user), $user);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return getNeededExpByLevel(getCurLvl($user, $pokemon), $user, $pokemon);
     }
 }
 
 if (!function_exists('getRelativeNeededExp')) {
-    function getRelativeNeededExp(\App\User $user = null)
+    function getRelativeNeededExp(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return getNeededExp($user) - getLastExp($user);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return getNeededExp($user, $pokemon) - getLastExp($user, $pokemon);
     }
 }
 
 if (!function_exists('getLastExp')) {
-    function getLastExp(\App\User $user = null)
+    function getLastExp(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return getCurLvl($user) > 1 ? getNeededExpByLevel(getCurLvl($user) - 1, $user) : 0;
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return getCurLvl($user, $pokemon) > 1 ? getNeededExpByLevel(getCurLvl($user, $pokemon) - 1, $user, $pokemon) : 0;
     }
 }
 
 if (!function_exists('getNeededExpByLevel')) {
-    function getNeededExpByLevel($level, \App\User $user = null)
+    function getNeededExpByLevel($level, \App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor($user->pokemon->experience * pow($level, 1.2));
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return floor($pokemon->experience * pow($level, 1.2));
     }
 }
 
 // LEVEL
 if (!function_exists('getCurLvl')) {
-    function getCurLvl(\App\User $user = null)
+    function getCurLvl(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return max(ceil(pow(getCurExp($user) / $user->pokemon->experience, 1 / 1.2)), 1);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return max(ceil(pow(getCurExp($user, $pokemon) / $pokemon->experience, 1 / 1.2)), 1);
     }
 }
 
 if (!function_exists('getLvlPercentage')) {
-    function getLvlPercentage(\App\User $user = null)
+    function getLvlPercentage(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(getRelativeCurExp($user) / getRelativeNeededExp($user) * 100);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return floor(getRelativeCurExp($user, $pokemon) / getRelativeNeededExp($user, $pokemon) * 100);
     }
 }
 
 // STATS
 if (!function_exists('getHealth')) {
-    function getHealth(\App\User $user = null)
+    function getHealth(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return ceil(((2 * ($user->pokemon->health - $user->bot)) * (getCurLvl($user) / 10)) + 30 - $user->bot);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return ceil(((2 * ($pokemon->health - $user->bot)) * (getCurLvl($user, $pokemon) / 10)) + 30 - $user->bot);
     }
 }
 
 if (!function_exists('getAtk')) {
-    function getAtk(\App\User $user = null)
+    function getAtk(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * ($user->pokemon->attack - $user->bot)) * getCurLvl($user) / 100) + 5 - $user->bot);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return floor(((2 * ($pokemon->attack - $user->bot)) * getCurLvl($user, $pokemon) / 100) + 5 - $user->bot);
     }
 }
 
 if (!function_exists('getDef')) {
-    function getDef(\App\User $user = null)
+    function getDef(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->defense - $user->bot) * getCurLvl($user) / 100) + 5 - $user->bot);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return floor(((2 * $pokemon->defense - $user->bot) * getCurLvl($user, $pokemon) / 100) + 5 - $user->bot);
     }
 }
 
 if (!function_exists('getSpd')) {
-    function getSpd(\App\User $user = null)
+    function getSpd(\App\User $user = null, \App\Pokemon $pokemon = null)
     {
         $user = is_null($user) ? \Auth::User() : $user;
-        return floor(((2 * $user->pokemon->speed - $user->bot) * getCurLvl($user) / 100) + 5 - $user->bot);
+        $pokemon = is_null($pokemon) ? $user->pokemon : $pokemon;
+        return floor(((2 * $pokemon->speed - $user->bot) * getCurLvl($user, $pokemon) / 100) + 5 - $user->bot);
     }
 }
 
@@ -143,5 +155,15 @@ if (!function_exists('transd')) {
         } else {
             return $default;
         }
+    }
+}
+
+if (!function_exists('lurl')) {
+    function lurl($path, $locale = null)
+    {
+        if (is_null($locale)) $locale = config('app.locale');
+        if (!in_array($locale, config('app.supported_locales'))) $locale = config('app.locale');
+
+        return url($locale . '/' . $path);
     }
 }

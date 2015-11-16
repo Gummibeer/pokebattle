@@ -69,4 +69,9 @@ return [
     'catch_lost' => 'Leider hast du den Kampf gegen das wilde :pokemon verloren.',
 
     'pokemon_change' => 'Du hast dein Pokémon erfolgreich gewechselt. :pokemon kämpft nun für dich.',
+
+    'lang' => [
+        'de' => 'Deutsch',
+        'us' => 'Englisch',
+    ],
 ];

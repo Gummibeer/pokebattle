@@ -8,8 +8,15 @@ use App\Type;
 use App\User;
 use Carbon\Carbon;
 
-class PokemonController extends Controller
+class PokepcController extends Controller
 {
+    public function getIndex()
+    {
+        return view('app.pokepc.index')->with([
+            'pokemons' => \Auth::User()->pokemons()->withPivot(['experience'])->paginate(50),
+        ]);
+    }
+
     public function postChange()
     {
         $newPokemonId = \Input::get('pokemon_id');

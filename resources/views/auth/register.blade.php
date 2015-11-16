@@ -54,6 +54,6 @@
         </div>
     {!! Form::close() !!}
     <p class="text-right">
-        Du hast schon einen Account? Dann <a href="{{ url('auth/login') }}">melde</a> dich an.
+        Du hast schon einen Account? Dann <a href="{{ lurl('auth/login') }}">melde</a> dich an.
     </p>
 @endsection

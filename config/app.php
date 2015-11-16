@@ -65,7 +65,12 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'de',
+
+    'supported_locales' => [
+        'de',
+        'us',
+    ],
 
     /*
     |--------------------------------------------------------------------------

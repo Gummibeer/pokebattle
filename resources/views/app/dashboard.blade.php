@@ -37,7 +37,7 @@
                             {{ \Auth::User()->pokemon->moves->count() }}
                         </div>
 
-                        {!! Form::open(['url' => 'app/pokemon/change']) !!}
+                        {!! Form::open(['url' => 'app/pokepc/change']) !!}
                         <div class="input-group">
                             {!! Form::select('pokemon_id', \Auth::User()->pokemons->keyBy('id')->map(function($pokemon){ return '#' . $pokemon->id . ' ' . $pokemon->display_name; })->toArray(), \Auth::User()->pokemon->id, ['class' => 'form-control']) !!}
                             <span class="input-group-btn">
@@ -62,13 +62,13 @@
                     <p class="text-center font-size-40" id="battle-timeout" data-finaldate="{{ \Auth::User()->fightable_at->format('Y-m-d H:i:s') }}">00:00</p>
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="{{ url('app/fight') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
+                            <a href="{{ lurl('app/fight') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
                                 <span class="btn-label"><i class="icon wh-brain"></i></span>
                                 {{ trans('messages.bot') }}
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ url('app/fight/catch') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
+                            <a href="{{ lurl('app/fight/catch') }}" class="btn btn-block btn-labeled @if(\Carbon\Carbon::now()->diffInSeconds(\Auth::User()->fightable_at, false) > 0) btn-dark @else btn-primary @endif">
                                 <span class="btn-label"><i class="icon wh-spiderweb"></i></span>
                                 {{ trans('messages.hunt') }}
                             </a>
