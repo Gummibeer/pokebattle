@@ -37,7 +37,7 @@
                             {{ \Auth::User()->pokemon->moves->count() }}
                         </div>
 
-                        {!! Form::open(['url' => 'app/pokepc/change']) !!}
+                        {!! Form::open(['url' => App::getLocale().'/app/pokepc/change']) !!}
                         <div class="input-group">
                             {!! Form::select('pokemon_id', \Auth::User()->pokemons->keyBy('id')->map(function($pokemon){ return '#' . $pokemon->id . ' ' . $pokemon->display_name; })->toArray(), \Auth::User()->pokemon->id, ['class' => 'form-control']) !!}
                             <span class="input-group-btn">
