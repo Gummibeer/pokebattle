@@ -17,6 +17,8 @@ return [
 
     'Dewgong'       => 'Jugong', #87
 
+    'Magikarp'       => 'Karpador', #87
+
     'Chikorita'     => 'Endivie', #152
 
     'Cyndaquil'     => 'Feurigel', #155
