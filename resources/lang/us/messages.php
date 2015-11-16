@@ -59,18 +59,6 @@ return [
     'bot' => 'Bot',
     'hunt' => 'Hunt',
 
-    'battle_timeout' => 'battle_timeout',
-
-    'fight_won' => 'fight_won',
-    'fight_lost' => 'fight_lost',
-
-    'catch_success' => 'catch_success',
-    'catch_no_found' => 'catch_no_found',
-    'catch_escape' => 'catch_escape',
-    'catch_lost' => 'catch_lost',
-
-    'pokemon_change' => 'pokemon_change',
-
     'lang' => [
         'de' => 'German',
         'us' => 'English',

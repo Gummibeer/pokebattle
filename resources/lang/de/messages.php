@@ -72,6 +72,9 @@ return [
 
     'pokemon_change' => 'Du hast dein Pokémon erfolgreich gewechselt. :pokemon kämpft nun für dich.',
 
+    'gitlab_help' => 'Du möchtest selbst mit entwickeln?',
+    'paypal_help' => 'Du möchtest uns unterstützen?',
+
     'lang' => [
         'de' => 'Deutsch',
         'us' => 'Englisch',
