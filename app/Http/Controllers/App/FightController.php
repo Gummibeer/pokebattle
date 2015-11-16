@@ -85,6 +85,7 @@ class FightController extends Controller
                         \Auth::User()->pokemons()->attach($bot->pokemon->id);
                         \Auth::User()->fightable_at = Carbon::now()->addMinutes(5);
                         $this->messages->add('battle', trans('messages.catch_success', ['pokemon' => $bot->pokemon->display_name]));
+                        \Slack::to(config('slack.channel'))->withIcon(':tada:')->send('*CONGRATULATIONS*' . PHP_EOL . '_' . \Auth::User()->name . '_ has catched a wild ' . $bot->pokemon->display_name);
                     } else {
                         \Auth::User()->fightable_at = Carbon::now()->addMinutes(10);
                         $this->messages->add('battle', trans('messages.catch_lost', ['pokemon' => $bot->pokemon->display_name]));
