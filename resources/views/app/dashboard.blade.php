@@ -41,7 +41,7 @@
                         <div class="input-group">
                             {!! Form::select('pokemon_id', \Auth::User()->pokemons->keyBy('id')->map(function($pokemon){ return '#' . $pokemon->id . ' ' . $pokemon->display_name; })->toArray(), \Auth::User()->pokemon->id, ['class' => 'form-control']) !!}
                             <span class="input-group-btn">
-                                {!! Form::button('speichern', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+                                {!! Form::button(trans('messages.save'), ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
                             </span>
                         </div>
                         {!! Form::close() !!}

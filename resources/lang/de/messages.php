@@ -13,6 +13,8 @@ return [
     'signup' => 'registrieren',
     'signout' => 'abmelden',
 
+    'save' => 'speichern',
+
     'active_pokemon' => 'aktives Pokémon',
     'pokemons_per_type' => 'Pokémons pro Typ',
     'pokemon_of_the_day' => 'Pokémon des Tages',

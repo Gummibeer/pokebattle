@@ -13,6 +13,8 @@ return [
     'signup' => 'signup',
     'signout' => 'signout',
 
+    'save' => 'save',
+
     'active_pokemon' => 'active Pokémon',
     'pokemons_per_type' => 'Pokémons per Type',
     'pokemon_of_the_day' => 'Pokémon of the day',
