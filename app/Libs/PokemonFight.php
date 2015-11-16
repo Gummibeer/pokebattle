@@ -3,6 +3,7 @@ namespace App\Libs;
 
 use App\Battlehistory;
 use App\Battlemessage;
+use App\Move;
 use App\User;
 
 class PokemonFight
@@ -112,13 +113,15 @@ class PokemonFight
 
     protected function getPokemonData(User $trainer, $attacker)
     {
-        return [
+        $data = [
             'is_attacker' => $attacker,
             'trainer_id' => $trainer->id,
             'pokemon_id' => $trainer->pokemon->id,
             'moves' => $trainer->pokemon->moves()->where('power', '<=', (getCurLvl($trainer) + 30))->get(),
             'health' => getHealth($trainer),
         ];
+        $data['moves'] = count($data['moves']) == 0 ? collect([Move::find(33)]) : $data['moves'];
+        return $data;
     }
 
     protected function getTrainerByPokemon(array $pokemon)
