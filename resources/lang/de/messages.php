@@ -78,5 +78,6 @@ return [
     'lang' => [
         'de' => 'Deutsch',
         'us' => 'Englisch',
+        'fr' => 'Französisch',
     ],
 ];

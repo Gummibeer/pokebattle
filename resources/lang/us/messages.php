@@ -62,5 +62,6 @@ return [
     'lang' => [
         'de' => 'German',
         'us' => 'English',
+        'fr' => 'French',
     ],
 ];

@@ -70,6 +70,7 @@ return [
     'supported_locales' => [
         'de',
         'us',
+        'fr',
     ],
 
     /*
