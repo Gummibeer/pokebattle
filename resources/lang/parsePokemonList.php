@@ -2,6 +2,7 @@
 
 class PokemonListParser
 {
+    // http://www.pokewiki.de/Pok%C3%A9mon-Liste
     public function getPokelist()
     {
         $pokelist = collect(array_map('str_getcsv', file(('pokemonlist.csv'))))->forget(0)->map(function ($item) {
