@@ -1,11 +1,8 @@
 <?php
 namespace App\Http\Controllers\App;
 
-use App\Battlehistory;
 use App\Http\Controllers\Controller;
-use App\Libs\PokemonFight;
 use App\Type;
-use App\User;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
