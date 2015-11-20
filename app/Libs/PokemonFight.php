@@ -85,7 +85,8 @@ class PokemonFight
             'attacker_win' => $winner['is_attacker'],
             'rounds' => $this->roundCount,
         ]);
-        $exp = max(floor((getCurLvl($this->getTrainerByPokemon($winner)) / 2) + 5 + (getCurLvl($this->getTrainerByPokemon($looser)) - getCurLvl($this->getTrainerByPokemon($winner))) + ($winner['is_attacker'] * 2)), 0);
+        $multiplier = $winner['is_attacker'] ? 2 : 0.5;
+        $exp = min(max(floor((getCurLvl($this->getTrainerByPokemon($winner)) / 10) * $multiplier), 0), (floor(rand(5, 20) * $multiplier)));
         $this->getTrainerByPokemon($winner)->won($exp, $winner['is_attacker']);
         $this->getTrainerByPokemon($looser)->loose($looser['is_attacker']);
     }

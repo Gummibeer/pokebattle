@@ -43,10 +43,21 @@ class FightController extends Controller
         if(\Auth::User()->fightable_at->diffInSeconds(Carbon::now(), false) >= 0) {
             $bot = new User([
                 'name' => collect($this->trainers)->random() . ' [BOT]',
+                'email' => str_random(64).'.'.time().'@bots.pokebattle.de',
                 'bot' => true,
             ]);
-            $bot->pokemon = \App\Pokemon::starter()->get()->random();
-            $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
+            $bot->save();
+            $bot->pokemons()->sync([
+                Pokemon::starter()->get()->random()->id => [
+                    'active' => 1,
+                ],
+            ]);
+            $experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
+            $bot->pokemons()->sync([
+                $bot->pokemon->id => [
+                    'experience' => $experience,
+                ],
+            ], false);
             $fight = new PokemonFight(\Auth::User(), $bot);
             $fight->run();
             \Auth::User()->save();
@@ -71,14 +82,25 @@ class FightController extends Controller
 
             $bot = new User([
                 'name' => collect($this->trainers)->random() . ' [BOT]',
+                'email' => str_random(64).'.'.time().'@bots.pokebattle.de',
                 'bot' => true,
             ]);
             $pokemons = Pokemon::selectRaw('*, ceil(pow(experience, 1.2)) as catch_level')->whereNotIn('id', \Auth::User()->pokemons()->lists('id'))->having('catch_level', '<=' , $catchChance)->get();
             if($pokemons->count() > 0) {
-                $bot->pokemon = $pokemons->random();
-                $bot->experience = getNeededExpByLevel(getCurLvl(\Auth::User()) + floor(rand(5, 10)), $bot);
                 $fightChance = round(mt_rand(1, 10));
                 if($fightChance <= 5) {
+                    $bot->save();
+                    $bot->pokemons()->sync([
+                        $pokemons->random()->id => [
+                            'active' => 1,
+                        ],
+                    ]);
+                    $experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
+                    $bot->pokemons()->sync([
+                        $bot->pokemon->id => [
+                            'experience' => $experience,
+                        ],
+                    ], false);
                     $fight = new PokemonFight(\Auth::User(), $bot);
                     $fight->run();
                     if (\Auth::User() == $fight->getWinner()) {
