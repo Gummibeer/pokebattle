@@ -54,7 +54,7 @@ class RunPokemonFight extends Command
                 'active' => 1,
             ],
         ]);
-        $experience = getNeededExpByLevel(getCurLvl(\Auth::User()) - floor(rand(1, 3)), $bot);
+        $experience = getNeededExpByLevel(getCurLvl($defender) - floor(rand(3, 15)), $bot);
         $bot->pokemons()->sync([
             $bot->pokemon->id => [
                 'experience' => $experience,

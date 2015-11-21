@@ -30,6 +30,7 @@ return [
         'third-quarter' => 'drittes Viertel',
         'new-moon' => 'Neumond',
         'waxing-crescent' => 'zunehmender Halbmond',
+        'waxing-gibbous' => 'zunehmender Dreiviertelmond',
     ],
     'weather' => [
         'cloud' => 'Wolken',
